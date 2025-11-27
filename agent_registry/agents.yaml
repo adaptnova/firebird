@@ -1,0 +1,149 @@
+# 🦅 Firebird Agent Registry
+# Central registry for all autonomous agents
+
+agents:
+  research:
+    id: "firebird-research-v1"
+    name: "Research Agent"
+    version: "1.0.0"
+    status: "active"
+    description: "Autonomous researcher with parallel web search and analysis"
+    capabilities:
+      - web_search
+      - deep_research
+      - data_synthesis
+      - source_verification
+    apis_used:
+      - tavily
+      - brave
+      - perplexity
+      - serper
+    llm_provider: "groq"
+    databases:
+      - mongodb (storage)
+      - qdrant (embeddings)
+    temporal_workflow: true
+    crash_proof: true
+    
+  analysis:
+    id: "firebird-analysis-v1"
+    name: "Analysis Agent"
+    version: "1.0.0"
+    status: "active"
+    description: "Synthesizes research into actionable insights"
+    capabilities:
+      - pattern_recognition
+      - trend_identification
+      - risk_assessment
+      - predictive_analysis
+    apis_used:
+      - groq
+      - moonshot
+    llm_provider: "moonshot"
+    databases:
+      - postgresql (structured data)
+      - clickhouse (analytics)
+      - neo4j (relationships)
+    temporal_workflow: true
+    crash_proof: true
+    
+  creative:
+    id: "firebird-creative-v1"
+    name: "Creative Agent"
+    version: "1.0.0"
+    status: "active"
+    description: "Generates content, reports, presentations"
+    capabilities:
+      - report_generation
+      - presentation_creation
+      - content_writing
+      - visual_design
+    apis_used:
+      - groq
+      - minimax
+    llm_provider: "groq"
+    databases:
+      - mongodb (documents)
+    temporal_workflow: true
+    crash_proof: true
+    
+  monitor:
+    id: "firebird-monitor-v1"
+    name: "Monitor Agent"
+    version: "1.0.0"
+    status: "active"
+    description: "24/7 monitoring of sources & triggers"
+    capabilities:
+      - keyword_monitoring
+      - competitor_tracking
+      - sentiment_analysis
+      - anomaly_detection
+    apis_used:
+      - brave
+      - serper
+      - perplexity
+    llm_provider: "groq"
+    databases:
+      - questdb (time_series)
+      - clickhouse (metrics)
+      - dragonfly (cache)
+    temporal_workflow: true
+    crash_proof: true
+    
+  code:
+    id: "firebird-code-v1"
+    name: "Code Agent"
+    version: "1.0.0"
+    status: "active"
+    description: "Autonomous software development"
+    capabilities:
+      - feature_implementation
+      - bug_fixing
+      - code_review
+      - test_writing
+    apis_used:
+      - minimax
+      - groq
+    llm_provider: "minimax"
+    databases:
+      - postgresql (issues)
+      - mongodb (codebase)
+    temporal_workflow: true
+    crash_proof: true
+    github_integration: true
+
+# Agent Routing Rules
+routing:
+  research_topic:
+    - monitor → research
+  completed_research:
+    - research → analysis
+  completed_analysis:
+    - analysis → creative
+  code_issue:
+    - monitor → code
+  emergency:
+    - any → monitor → slack_notification
+
+# Health Checks
+health_checks:
+  research:
+    endpoint: "/health/research"
+    interval: "30s"
+    timeout: "5s"
+  analysis:
+    endpoint: "/health/analysis"
+    interval: "30s"
+    timeout: "5s"
+  creative:
+    endpoint: "/health/creative"
+    interval: "30s"
+    timeout: "5s"
+  monitor:
+    endpoint: "/health/monitor"
+    interval: "10s"
+    timeout: "5s"
+  code:
+    endpoint: "/health/code"
+    interval: "30s"
+    timeout: "5s"
