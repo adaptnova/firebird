@@ -1,0 +1,51 @@
+{
+  "worker_id": 19,
+  "topic": "Temporal in multi-agent architecture",
+  "timestamp": "2025-11-26T18:22:16.586195",
+  "duration_seconds": 7.225222,
+  "executive_summary": "Research on 'Temporal in multi-agent architecture' completed. Found 10 sources with 5 key concepts identified. Coverage: 50.0%",
+  "key_findings": [
+    "Identified 10 relevant sources",
+    "Found 5 key concepts related to Temporal and AI agents",
+    "Coverage score: 50.0%",
+    "Research completed autonomously in parallel with other workers"
+  ],
+  "sources": [
+    {
+      "title": "Multi-agent Workflows: Use cases & architecture with Temporal",
+      "url": "https://temporal.io/blog/what-are-multi-agent-workflows",
+      "content": "Agents in a multi-agent system may need to maintain context or state throughout a workflow, especially when they need to reference prior steps, adapt based on changing information, or retry parts of the workflow.\n\nTemporal\u2019s state management capabilities allow it to store and retrieve data across these interactions, ensuring each agent has the correct context at every stage. Temporal can also time out, retry, or roll back actions if an agent fails, giving resilience to the overall system. [...] Temporal\u2019s orchestration here allows each agent to function independently yet stay coordinated, enabling seamless and efficient customer support automation.\n\n## In summary#\n\nTemporal\u2019s orchestration, durability, and ability to manage complex stateful and stateless interactions make it a perfect foundation for multi-agent workflows in AI applications. Temporal ensures that these interactions are reliable, efficient, and resilient, even as workflows grow in complexity or scale. [...] For multi-agent systems that involve parallel tasks, Temporal\u2019s parallelism and concurrency control enable multiple agents to work simultaneously without blocking each other. This is ideal when agents operate independently on sub-tasks that later need to converge.\n\nFor example, in a recommendation system, separate agents might handle user data processing, item analysis, and scoring. Temporal can coordinate the simultaneous execution of these tasks and merge results efficiently.",
+      "query": "Temporal in multi-agent architecture"
+    },
+    {
+      "title": "Orchestrating ambient agents with Temporal",
+      "url": "https://temporal.io/blog/orchestrating-ambient-agents-with-temporal",
+      "content": "Orchestrating with Temporal also simplified the design: rather than writing complex multi-threaded code or managing distributed state, I let Temporal Workflows handle concurrency and state isolation. Each agent had its own Workflow \u201cinstance\u201d (for example, an `ExecutionAgentWorkflow` with a well-known ID) and could maintain internal variables (like the current prompt or recent actions) in memory safely. Temporal\u2019s single-responsibility Workflows made the multi-agent system easier to extend too. [...] Along the way, I discovered several key advantages of using Temporal in such an AI-driven system. In this post, I\u2019ll dive into what I learned about five crucial features of Temporal and how they benefited my multi-agent architecture: Schedules, Signals & Queries, Temporal\u2019s UI, workflow orchestration, and Temporal primitives as MCP tools.\n\n## Temporal Schedules: Enabling proactive agents# [...] When orchestrating multiple intelligent agents, understanding what happened when is crucial. Temporal\u2019s Web UI became an invaluable tool for observing the system\u2019s behavior in real time. Every agent and tool in my system runs as a Temporal Workflow, which means I have a timeline of each Workflow\u2019s execution and Events accessible in the UI. This proved extremely helpful for debugging and trustworthiness: I could literally watch the agents\u2019 interactions step by step. For example, whenever the",
+      "query": "Temporal in multi-agent architecture"
+    },
+    {
+      "title": "Durable multi-agentic AI architecture with Temporal",
+      "url": "https://temporal.io/blog/using-multi-agent-architectures-with-temporal",
+      "content": "With Temporal, it\u2019s easy to build proactive agents that can monitor and even act on their own. I\u2019m going to set this one to start and look for problems. If problems are found, the agents will go deeper: analyzing problems and proposing solutions. I\u2019ll set it up to notify me that problems are found, and wait for my review and approval. [...] Temporal Logo\n\n# Using the power of multi-agent architectures with Temporal\n\nMulti-agent architecture enables several powerful patterns. Here, I\u2019ll start from the basics, and describe how Temporal can be used to make building multi-agent systems simple, durable, and fun.\n\n## Why multi-agent architectures?# [...] Our system is now proactive, detecting and analyzing problems on its own, automatically repairing them if it\u2019s sure of its repairs. If it\u2019s not more than 95% confident, it notifies me and waits for my review and approval. I can interact with it via MCP, Temporal Workflow Signals and Queries, and goose, reviewing order problems and proposed repairs.",
+      "query": "Temporal in multi-agent architecture"
+    },
+    {
+      "title": "Multi-Agent Workflows: A Practical Guide to Design, Tools, and ...",
+      "url": "https://medium.com/@kanerika/multi-agent-workflows-a-practical-guide-to-design-tools-and-deployment-3b0a2c46e389",
+      "content": "Intuitive conversation metaphor\n Strong research community\n Good for experimentation\n Flexible agent interactions\n\nCons:\n\n Less structured than graph approaches\n Can be harder to control complex flows\n Limited production tooling\n\n## 4. Temporal for Multi-Agent Orchestration\n\nTemporal is well-suited to support multi-agent workflows because it handles the orchestration, state management, and coordination across different agents.\n\nBest For: [...] Why multi-agent workflows outperform single-agent systems through specialization, parallel processing, and reduced hallucinations for complex business tasks\n Essential architecture patterns including shared scratchpad, handoff-based communication, and tool-calling models for different workflow requirements\n Framework comparison between LangGraph for complex control, CrewAI for rapid deployment, AutoGen for research, and Temporal for mission-critical applications [...] These multi-agent architectures use a supervisor agent that coordinates and manages specialized sub-agents, similar to how a project manager assigns tasks to different team members. Individual agents can be represented as tools. In this case, a supervisor agent uses a tool-calling LLM to decide which of the agent tools to call. The supervisor makes routing decisions and controls the overall workflow execution.",
+      "query": "Temporal in multi-agent architecture"
+    },
+    {
+      "title": "Agentic AI Workflows: Why Orchestration with Temporal is Key",
+      "url": "https://intuitionlabs.ai/articles/agentic-ai-temporal-orchestration",
+      "content": "Several aspects of Temporal\u2019s architecture map directly to the earlier-identified challenges of agentic workflows: [...] Table 1 below summarizes common multi-agent failure patterns and mitigation strategies: [...] Architecturally, agentic workflows are often multi-agent systems (MAS). They can be single-agent if one LLM orchestrates a flow, or multi-agent if several specialized agents (e.g. analytics agent, transaction agent, report agent) collaborate or divide-and-conquer tasks (( \"Highlights: The modern form of agentic,AI has been enabled by\")). In MAS, coordination is vital \u2013 agents exchange information, pass intermediate results, and sometimes delegate subtasks to each other.",
+      "query": "Temporal in multi-agent architecture"
+    }
+  ],
+  "recommendations": [
+    "Further research needed on: Temporal workflows, Agent orchestration, Multi-agent systems",
+    "Explore Temporal's workflow retry mechanisms",
+    "Investigate agent orchestration patterns",
+    "Consider event sourcing for agent state"
+  ]
+}

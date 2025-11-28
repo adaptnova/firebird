@@ -1,0 +1,51 @@
+{
+  "worker_id": 2,
+  "topic": "Durable execution in multi-agent systems",
+  "timestamp": "2025-11-26T18:22:11.354126",
+  "duration_seconds": 1.993171,
+  "executive_summary": "Research on 'Durable execution in multi-agent systems' completed. Found 10 sources with 6 key concepts identified. Coverage: 60.0%",
+  "key_findings": [
+    "Identified 10 relevant sources",
+    "Found 6 key concepts related to Temporal and AI agents",
+    "Coverage score: 60.0%",
+    "Research completed autonomously in parallel with other workers"
+  ],
+  "sources": [
+    {
+      "title": "What Are Multi-Agent Systems? - TrueFoundry",
+      "url": "https://www.truefoundry.com/blog/multi-agent-systems",
+      "content": "Implement durable execution and checkpointing wherever agents perform long-running or critical tasks. By maintaining execution states and partial results, agents can recover from failures without restarting the entire workflow. Frameworks like LangGraph or Flyte (used within TrueFoundry) can help manage these stateful workflows. [...] When multiple agents interact, ensure robust coordination protocols. Use mechanisms like contract-net for task bidding, leader election for role delegation, and timeouts for fail-safe behavior. For asynchronous operations, implement retries and fallback strategies to prevent deadlocks or cascading failures. [...] To maintain coherence across agents, consider shared vector stores, memory chains, or event logs. Use LangGraph or custom DAG-based schedulers to model dependencies and execution flows between agents. A well-architected MAS aligns autonomy with structure, enabling flexibility while preserving control across a distributed intelligent system.\n\n## Deploying and Managing Multi-Agent Systems with TrueFoundry",
+      "query": "Durable execution in multi-agent systems"
+    },
+    {
+      "title": "Durable Execution for Building Crashproof AI Agents - DBOS",
+      "url": "https://www.dbos.dev/blog/durable-execution-crashproof-ai-agents",
+      "content": "There are two main challenges in implementing this process within an AI agent: [...] We believe the missing piece is durable execution for AI agents \u2013 specifically, the ability to construct durable tools that interact with external systems and are resilient to errors or failures. If the customer experience or other business operations depend on the successful completion of AI-automated tasks (over potentially long times), then durable execution is a must-have. Automated tasks that fail and do not resume, or that resume but re-run already-completed tasks, will undermine the [...] ```",
+      "query": "Durable execution in multi-agent systems"
+    },
+    {
+      "title": "How and when to build multi-agent systems - LangChain Blog",
+      "url": "https://blog.langchain.com/how-and-when-to-build-multi-agent-systems/",
+      "content": "> Agents are stateful and errors compound. Agents can run for long periods of time, maintaining state across many tool calls. This means we need to durably execute code and handle errors along the way. Without effective mitigations, minor system failures can be catastrophic for agents. When errors occur, we can't just restart from the beginning: restarts are expensive and frustrating for users. Instead, we built systems that can resume from where the agent was when the errors occurred. [...] This durable execution is a key part of LangGraph, our agent orchestration framework. We believe all long running agents will need this, and accordingly it should be built into the agent orchestration framework.\n\nAgent Debugging and Observability [...] Figuring out how to get multi-agent (or complex single agent) systems to function also requires new tooling. Durable execution, debugging, observability, and evaluation are all new tools that will make your life as an application developer easier. Luckily, these are all generic tooling. This means that you can use tools like LangGraph and LangSmith to get these off-the-shelf, allowing you to focus more on the business logic of your application than generic infrastructure.\n\n### Tags",
+      "query": "Durable execution in multi-agent systems"
+    },
+    {
+      "title": "Taxonomy of AI Agents: Headless, Ambient, Durable, and Beyond",
+      "url": "https://generativeprogrammer.com/p/taxonomy-of-ai-agents-headless-ambient",
+      "content": "In essence, ambient and headless agents share the same foundation of interface-free intelligence, but ambient agents place stronger emphasis on proactive, event-driven operation and human collaboration \u2014 making the two terms largely interchangeable in practice.\n\n# \ud83d\udcbe Durable Agents\n\nDurable agents emphasize durable execution, in contrast to non-durable agents, where execution state is typically held in memory and lost on failure or restart. [...] Different agentic frameworks achieve durability differently. For example, Pydantic integrates with systems such as Temporal, DBOS, and Prefect. In contrast, Dapr Agents, offer native support for durability via a built-in `DurableAgent` type. This agent type combine multiple traits:\n\n Headless \u2013 invokable via REST APIs, with no fixed interface\n Ambient \u2013 can be triggered by an event stream\n Durable \u2013 backed by a persistent workflow engine [...] Other frameworks offering durability include: Convex and Restate.\n\n# \ud83e\udde0 Deep Agents\n\nDeep agents are an evolution of traditional (shallow?) agents with a goal to handle complex, multi-step tasks by combining planning, memory, and delegation. In reality, these are multi-agent systems with specialized sub-agents, and that\u2019s an implementation detail.\n\nAs Philipp Schmid summarizes:",
+      "query": "Durable execution in multi-agent systems"
+    },
+    {
+      "title": "From AI hype to durable reality \u2014 why agentic flows need distributed ...",
+      "url": "https://temporal.io/blog/from-ai-hype-to-durable-reality-why-agentic-flows-need-distributed-systems",
+      "content": "seamlessly interact with external or internal services and APIs, while Temporal fortifies these interactions with robust Durable Execution. Together, \u201cDurable Tools\u201d transform AI from passive responders into resilient, action-taking agents. As I watched my weather agent come to life, the same spark of excitement around infinite possibilities I felt in 1995 returned. [...] Durable Execution, implicit retries, and built-in state management slash boilerplate. Teams often report double-digit reductions in lines of code and a dramatic drop in custom glue logic. Fewer moving parts mean faster prototypes, quicker reviews, and easier audits. (Diagram is conceptual and not based on real-world data) [...] I saw the same durability in my own MCP demo. The MCP server acts as a Temporal client, and every tool invocation is a `StartWorkflow` call. If the process hosting the agent crashes mid-dialog, the Workflow History simply rehydrates on the next Worker, the Signal channel reconnects, and the agent finishes the request without losing context or duplicating work.",
+      "query": "Durable execution in multi-agent systems"
+    }
+  ],
+  "recommendations": [
+    "Further research needed on: Durable execution, Agent orchestration, Multi-agent systems",
+    "Explore Temporal's workflow retry mechanisms",
+    "Investigate agent orchestration patterns",
+    "Consider event sourcing for agent state"
+  ]
+}

@@ -1,0 +1,49 @@
+# Deep Agent with Enhanced Tool Stack Walkthrough
+
+This walkthrough demonstrates the implementation of the Deep Agent with a massively enhanced tool stack, transforming it into a capable DevOps and Research assistant.
+
+## New Capabilities
+
+1.  **System Administration (ShellTool)**: The agent can now execute arbitrary shell commands (including `sudo`), allowing it to install packages, check system status, and manage services.
+    *   *Verification*: Successfully ran `uptime`, `whoami`, `pwd`, and `uname -a`.
+2.  **Database Management (SQLDatabaseToolkit)**: The agent can inspect schemas and query databases directly.
+    *   *Verification*: Successfully listed tables in the connected PostgreSQL database.
+3.  **File System Access**: Full access to the file system (root `/`) for reading and writing files.
+4.  **Git Operations**: Can clone and check status of git repositories.
+5.  **Research**: Can search the web (DuckDuckGo) and query Wikipedia.
+6.  **Code Execution**: Can run Python code via REPL.
+
+## Verification Highlights
+
+### Shell Access
+```
+User: Check the system uptime using the shell tool.
+Agent: [Calling Tool: terminal with {'commands': 'uptime'}]
+[Tool Output]: 11:34:19 up 23:43, 1 user, load average: 9.68, 7.84, 6.47
+```
+
+### Database Inspection
+```
+User: List the tables in the database.
+Agent: [Calling Tool: sql_db_list_tables with {}]
+[Tool Output]: Account, BusinessPlan, ... agent_memories, ...
+```
+
+## Architecture
+
+- **[agent.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/agent.py)**: Updated to import and initialize the new toolkits.
+- **[tools/](file:///usr/local/lib/python3.12/dist-packages/langchain_community/chat_models/minimax.py#649-667)**: Modularized tool definitions.
+    - [code_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/code_tools.py): `PythonREPLTool`, `ShellTool`.
+    - [db_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/db_tools.py): `SQLDatabaseToolkit`.
+    - [file_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/file_tools.py): `FileManagementToolkit`.
+    - [git_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/git_tools.py): Custom git tools.
+    - [research_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/research_tools.py): `DuckDuckGoSearchRun`, `WikipediaQueryRun`.
+
+## Usage
+
+To run the enhanced agent:
+
+```bash
+cd /adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent
+python3 agent.py
+```

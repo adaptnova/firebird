@@ -1,0 +1,51 @@
+{
+  "worker_id": 6,
+  "topic": "Event sourcing in agent systems",
+  "timestamp": "2025-11-26T18:22:12.940243",
+  "duration_seconds": 3.579284,
+  "executive_summary": "Research on 'Event sourcing in agent systems' completed. Found 10 sources with 2 key concepts identified. Coverage: 20.0%",
+  "key_findings": [
+    "Identified 10 relevant sources",
+    "Found 2 key concepts related to Temporal and AI agents",
+    "Coverage score: 20.0%",
+    "Research completed autonomously in parallel with other workers"
+  ],
+  "sources": [
+    {
+      "title": "Event Sourcing: The Backbone of Agentic AI - Akka",
+      "url": "https://akka.io/blog/event-sourcing-the-backbone-of-agentic-ai",
+      "content": "8:16: I want to finish up the main content of this video by showing this symbolic backbone.\n\n8:22: Event sourcing is the central supporting column for all of the key features of agentic systems like memory, rag, multi-agent, and multi-modal operation, tool integration, and vector embeddings.\n\n8:35: You might be wondering what you should do next to learn and keep up to date with all of these rapid AI innovations. [...] 7:45: By making the choice to embrace event sourcing, our agentic systems also get a ton of things included in the package.\n\n7:52: We can do fearless experimentation and run what if scenarios, as well as use event logs to feed and inform fine tuning and context engineering.\n\n8:03: Event sourcing means that autonomous agents can act in concert and communicate with each other through durable events.\n\n8:10: We can even deal with agent and event versioning through replay and regeneration. [...] 6:49: LLMs and by extension agents are nondeterministic.\n\n6:54: We can't predict from one call to the next how they're going to react, so we need a way to evaluate and judge the performance of the model.\n\n7:02: To measure our confidence or lack of it in the results.\n\n7:08: OK, so now that we've covered what agents need, we can talk about how event sourcing makes perfect sense as the core foundation of any agentic system.\n\n7:17: Event sourcing provides perfect recall.",
+      "query": "Event sourcing in agent systems"
+    },
+    {
+      "title": "Event Sourcing pattern - Azure Architecture Center | Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/event-sourcing",
+      "content": "Event sourcing is a complex pattern that permeates through the entire architecture and introduces trade-offs to achieve increased performance, scalability, and auditability. Once your system becomes an event sourcing system, all future design decisions are constrained by the fact that this is an event sourcing system. There is a high cost to migrate to or from an event sourcing system. This pattern is best suited for systems where performance and scalability are top requirements. The complexity [...] The Event Sourcing pattern defines an approach to handling operations on data that's driven by a sequence of events, each of which is recorded in an append-only store. Application code raises events that imperatively describe the action taken on the object. The events are generally sent to a queue where a separate process, an event handler, listens to the queue and persists the events in an event store. Each event represents a logical change to the object, such as `AddedItemToOrder` or [...] > Event sourcing is commonly combined with the CQRS pattern by performing the data management tasks in response to the events, and by materializing views from the stored events.\n\n## Issues and considerations\n\nConsider the following points when deciding how to implement this pattern:",
+      "query": "Event sourcing in agent systems"
+    },
+    {
+      "title": "A distributed state of mind: Event-driven multi-agent systems",
+      "url": "https://www.infoworld.com/article/3808083/a-distributed-state-of-mind-event-driven-multi-agent-systems.html",
+      "content": "In this model, agents are designed to emit and listen for events autonomously. Events act as signals that something has happened, allowing agents to respond without requiring direct, orchestrated requests. This approach ensures agility, scalability, and a more dynamic system.\n\nAgent interfaces in event-driven systems are defined by the events they emit and consume, encapsulated in simple, standardized messages like JSON payloads. This structured design: [...] Again, this creates a significant operational simplification and reduces the amount of bespoke logic that must be created outside of the infrastructure. Each worker agent simply produces and consumes events in order to collaborate with the rest of the group.\n\n### Market-based pattern\n\nThis pattern models a decentralized marketplace where agents negotiate and compete to allocate tasks or resources. [...] A critical insight that serves as a liberating simplifying assumption is that these agents don\u2019t divine action; rather, they react to upstream events or commands. Operating within dynamic, interconnected environments, agents can be modeled with three components:\n\n1. Input: Consuming events or commands.\n2. Processing: Applying reasoning or gathering additional data.\n3. Output: Emitting actions for downstream consumers.",
+      "query": "Event sourcing in agent systems"
+    },
+    {
+      "title": "Four Design Patterns for Event-Driven, Multi-Agent Systems",
+      "url": "https://www.confluent.io/blog/event-driven-multi-agent-systems/",
+      "content": "In this model, agents are designed to emit and listen for events autonomously. Events act as signals that something has happened, allowing agents to respond without requiring direct, orchestrated requests. This approach ensures agility, scalability, and a more dynamic system.\n\nAgent interfaces in event-driven systems are defined by the events they emit and consume, encapsulated in simple, standardized messages like JSON payloads. This structured design: [...] Again, this creates a significant operational simplification and reduces the amount of bespoke logic that must be created outside of the infrastructure. Each worker agent simply produces and consumes events in order to collaborate with the rest of the group.\n\n### Market-based pattern\n\nThis pattern models a decentralized marketplace where agents negotiate and compete to allocate tasks or resources. [...] A critical insight that serves as a liberating simplifying assumption is that these agents don\u2019t divine action; rather, they react to upstream events or commands. Operating within dynamic, interconnected environments, agents can be modeled with three components:\n\n1. Input: Consuming events or commands.\n2. Processing: Applying reasoning or gathering additional data.\n3. Output: Emitting actions for downstream consumers.",
+      "query": "Event sourcing in agent systems"
+    },
+    {
+      "title": "Designing Scalable Multi-Agent AI Systems",
+      "url": "https://dzone.com/articles/multi-agent-ai-ddd-event-storming",
+      "content": "4. Communication Patterns: Explore various patterns such as publish-subscribe, request-response, or event sourcing for efficient inter-agent communication.\n5. Scalability-Oriented Design: Create a flexible architecture that allows for easy addition of new agents or expansion of existing capabilities.\n6. Conflict Resolution Mechanisms: Establish clear hierarchies or negotiation protocols to manage potential conflicts between agents. [...] By carefully considering these limitations and tailoring the approach to your specific needs, you can maximize the benefits of using DDD and Event Storming for Multi-Agent Systems while mitigating potential drawbacks.\n\n## Conclusion\n\nThe integration of Event Storming and Domain-Driven Design (DDD) offers a powerful framework for designing Multi-Agent AI Systems (MAS). This approach provides several benefits: [...] |  |  |  |  |  |  |\n ---  ---  --- |\n| Context | Agents | Responsibilities | Input Events | Output Events | Knowledge Bases |\n| Supply Chain | Supply Chain Agent | 1. Raw material ordering  2. Inventory management  3. Reorder point triggering | 1. Inventory Level Critical Reached  2. Raw Material Received | 1. Raw Material Ordered  2. Reorder Point Triggered  3. Inventory Updated | 1. Global Supplier KB  2. Inventory Levels KB |",
+      "query": "Event sourcing in agent systems"
+    }
+  ],
+  "recommendations": [
+    "Further research needed on: Multi-agent systems, Event sourcing",
+    "Explore Temporal's workflow retry mechanisms",
+    "Investigate agent orchestration patterns",
+    "Consider event sourcing for agent state"
+  ]
+}

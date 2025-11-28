@@ -1,0 +1,51 @@
+{
+  "worker_id": 8,
+  "topic": "Temporal workflows for autonomous agents",
+  "timestamp": "2025-11-26T18:22:13.198603",
+  "duration_seconds": 3.837645,
+  "executive_summary": "Research on 'Temporal workflows for autonomous agents' completed. Found 10 sources with 5 key concepts identified. Coverage: 50.0%",
+  "key_findings": [
+    "Identified 10 relevant sources",
+    "Found 5 key concepts related to Temporal and AI agents",
+    "Coverage score: 50.0%",
+    "Research completed autonomously in parallel with other workers"
+  ],
+  "sources": [
+    {
+      "title": "Orchestrating ambient agents with Temporal",
+      "url": "https://temporal.io/blog/orchestrating-ambient-agents-with-temporal",
+      "content": "Orchestrating with Temporal also simplified the design: rather than writing complex multi-threaded code or managing distributed state, I let Temporal Workflows handle concurrency and state isolation. Each agent had its own Workflow \u201cinstance\u201d (for example, an `ExecutionAgentWorkflow` with a well-known ID) and could maintain internal variables (like the current prompt or recent actions) in memory safely. Temporal\u2019s single-responsibility Workflows made the multi-agent system easier to extend too. [...] When orchestrating multiple intelligent agents, understanding what happened when is crucial. Temporal\u2019s Web UI became an invaluable tool for observing the system\u2019s behavior in real time. Every agent and tool in my system runs as a Temporal Workflow, which means I have a timeline of each Workflow\u2019s execution and Events accessible in the UI. This proved extremely helpful for debugging and trustworthiness: I could literally watch the agents\u2019 interactions step by step. For example, whenever the [...] Coordinating several agents and services \u2014 ticker feeds, a trading agent, a performance judge, and more \u2014 can get complicated fast. Temporal simplified this by acting as the central orchestrator for all agent workflows. In my design, each major component is a separate Workflow (or set of Workflows) and Temporal manages their lifecycles and interactions. This yielded a system where agents can run truly 24\u00d77 with resilience and clarity in how they interact.",
+      "query": "Temporal workflows for autonomous agents"
+    },
+    {
+      "title": "Multi-agent Workflows: Use cases & architecture with Temporal",
+      "url": "https://temporal.io/blog/what-are-multi-agent-workflows",
+      "content": "Temporal\u2019s workflows can sleep, wait for new data, or pause until a signal (such as an update from an agent) arrives, allowing for workflows that evolve as agents contribute data at different times.\n\n## 6. Event-Driven Triggers and Signals#\n\nMulti-agent systems often operate in response to events (like incoming data or status updates from other agents). Temporal supports signals and queries that let agents or external triggers start, modify, or stop workflows in real time. [...] Multi-agent workflows involve the orchestration and coordination of tasks or processes carried out by multiple autonomous agents. These agents can be software applications, artificial intelligence models, bots, or even human participants. Multi-agent workflows are often used in scenarios where tasks are distributed, asynchronous, or require collaboration among diverse systems or entities. [...] ## 5. Long-Running Workflows with Multi-Step Processes#\n\nIn use cases where agents contribute to a long-running process \u2014 like generating and refining a report over several steps \u2014 Temporal\u2019s ability to maintain workflows over hours or even days is invaluable. Each agent can do its part, and Temporal keeps the process stable over time.",
+      "query": "Temporal workflows for autonomous agents"
+    },
+    {
+      "title": "What are Agentic AI Workflows? Scalable & Durable ... - Temporal",
+      "url": "https://temporal.io/blog/build-resilient-agentic-ai-with-temporal",
+      "content": "Step-debugging workflows, tracking execution with detailed UI metrics, and leveraging Temporal\u2019s visibility features make it easy to troubleshoot and optimize. Developers can quickly identify bottlenecks and ensure their agents run efficiently.\n\n## Scheduled Execution#\n\nTemporal supports running workflows on a schedule, enabling AI agents to periodically poll for new data and act accordingly. This makes it an ideal choice for use cases requiring continuous updates and real-time responsiveness. [...] In addition, Temporal ensures workflows can survive real-world failures: process crashes, bad data, and network timeouts. Unlike single-process frameworks, Temporal retains state and automatically retries failed steps, ensuring that agents recover and continue without losing progress. [...] Most frameworks handle short-lived sequences. Temporal is built for workflows that last hours, days, or even months. It maintains state across the entire lifecycle, so your agent never loses track of its goal or context \u2014 no matter how complex or prolonged the interaction.\n\n## Human-in-the-Loop Support#\n\nSome decisions require human oversight. Temporal makes it easy to involve people at critical moments:",
+      "query": "Temporal workflows for autonomous agents"
+    },
+    {
+      "title": "Agentic AI Workflows: Why Orchestration with Temporal is Key",
+      "url": "https://intuitionlabs.ai/articles/agentic-ai-temporal-orchestration",
+      "content": "A key attribute is autonomy: agentic workflows allow agents to make decisions within defined boundaries rather than following a fixed script. For instance, an AI customer support agent might decide which databases to query, then execute updates, then email customers, all without step-by-step human instructions. This autonomy makes workflows more efficient but also riskier: if an agent misinterprets a step or a tool fails, there must be controls in place. [...] | Long-Running Workflow Disruption | Agent pauses or system restart mid-flow. E.g., an agent waits days for human approval, but intermediate state is lost on crash. | Utilize durable state persistence. Workflow engines snapshot context; after downtime, the agent resumes automatically at last known point. (Temporal\u2019s durable virtual memory survives process restarts (( \"Highlights: The core abstraction in Temporal,process and Temporal service failures\")).) | [...] Before agentic AI, businesses deployed automation (e.g. RPA bots, orchestration scripts, click-based workflows) for repetitive processes. These typically handled fixed schedules or simple triggers. In contrast, agentic workflows involve uncertain, dynamic tasks requiring reasoning. Consider an AI agent that autonomously manages sales leads, or one that processes complex compliance reports. These involve multiple data sources, decision branches, and error handling across potentially long time",
+      "query": "Temporal workflows for autonomous agents"
+    },
+    {
+      "title": "How Dust Builds Agentic AI with Temporal Workflows",
+      "url": "https://temporal.io/blog/how-dust-builds-agentic-ai-temporal",
+      "content": "Temporal also powers Dust\u2019s Tracker product, which monitors for stale documents based on internal activity and triggers agent-led updates to things like coding guidelines or internal processes. These are complex Workflows. They may involve polling APIs, running AI tasks, and proposing structured changes; all of which require persistence, retry logic, and state. [...] The long-term goal is to make AI agents not just useful, but foundational to how teams operate: handling real Workflows, surfacing genuine insights, and evolving alongside the business. Temporal makes that possible, serving as the reliable execution engine behind every interaction.\n\nWant to see how Dust builds AI infrastructure in the open? Check out their GitHub, follow them on Twitter/X or LinkedIn, and explore more at dust.tt. [...] From the beginning, Dust has relied on Temporal as the orchestration engine powering its agent platform.\n\nWhenever a Slack message is posted, a Notion doc is updated, or a pull request is created, a Temporal Workflow is triggered. That Workflow might pull data, transform it, run AI processing, and update internal indexes. It might respond back to the platform or kick off a follow-up action. Some Workflows last seconds; others span hours.",
+      "query": "Temporal workflows for autonomous agents"
+    }
+  ],
+  "recommendations": [
+    "Further research needed on: Temporal workflows, Multi-agent systems, AI agents",
+    "Explore Temporal's workflow retry mechanisms",
+    "Investigate agent orchestration patterns",
+    "Consider event sourcing for agent state"
+  ]
+}

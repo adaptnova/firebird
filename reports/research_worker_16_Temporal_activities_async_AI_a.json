@@ -1,0 +1,51 @@
+{
+  "worker_id": 16,
+  "topic": "Temporal activities async AI agents",
+  "timestamp": "2025-11-26T18:22:14.304013",
+  "duration_seconds": 4.943044,
+  "executive_summary": "Research on 'Temporal activities async AI agents' completed. Found 10 sources with 4 key concepts identified. Coverage: 40.0%",
+  "key_findings": [
+    "Identified 10 relevant sources",
+    "Found 4 key concepts related to Temporal and AI agents",
+    "Coverage score: 40.0%",
+    "Research completed autonomously in parallel with other workers"
+  ],
+  "sources": [
+    {
+      "title": "How Dust Builds Agentic AI with Temporal Workflows",
+      "url": "https://temporal.io/blog/how-dust-builds-agentic-ai-temporal",
+      "content": "Long-running or resource-intensive tasks, like document chunking and embedding, are managed asynchronously as Temporal Activities, ensuring responsiveness without blocking other parts of the system. [...] This logic runs inside a Temporal Activity, managed as part of a broader Workflow that handles repo syncing across the platform. If a failure occurs, say, during a download or parsing step, Temporal automatically retries the Activity and resumes execution precisely from the point of failure. No lost work, no dangling jobs. [...] Temporal also powers Dust\u2019s Tracker product, which monitors for stale documents based on internal activity and triggers agent-led updates to things like coding guidelines or internal processes. These are complex Workflows. They may involve polling APIs, running AI tasks, and proposing structured changes; all of which require persistence, retry logic, and state.",
+      "query": "Temporal activities async AI agents"
+    },
+    {
+      "title": "Temporal - Pydantic AI",
+      "url": "https://ai.pydantic.dev/durable_execution/temporal/",
+      "content": "In the case of Pydantic AI agents, integration with Temporal means that model requests, tool calls that may require I/O, and MCP server communication all need to be offloaded to Temporal activities due to their I/O requirements, while the logic that coordinates them (i.e. the agent run) lives in the workflow. Code that handles a scheduled job or web request can then execute the workflow, which will in turn execute the activities as needed. [...] 8. The `AgentPlugin` registers the `TemporalAgent`'s activities with the worker.\n9. We call on the server to execute the workflow on a worker that's listening on the specified task queue.\n10. The agent's `name` is used to uniquely identify its activities. [...] result = await temporal_agent. run(prompt)# (3)! return result. output async def  main(): client = await Client. connect(# (4)!'localhost:7233',# (5)! plugins =[PydanticAIPlugin()],# (6)!) async with Worker(# (7)! client, task_queue = 'geography', workflows =[GeographyWorkflow], plugins =[AgentPlugin(temporal_agent)],# (8)!): output = await client. execute_workflow(# (9)! GeographyWorkflow. run, args =['What is the capital of Mexico?'], id = f'geography-{uuid. uuid4()} ', task_queue =",
+      "query": "Temporal activities async AI agents"
+    },
+    {
+      "title": "Here's how to build durable AI agents with Pydantic and Temporal",
+      "url": "https://temporal.io/blog/build-durable-ai-agents-pydantic-ai-and-temporal",
+      "content": "The full example on GitHub includes additional production patterns: maintaining conversation state per Slack thread, handling asynchronous messages with Signals, coordinating Slack API calls as Activities with retries, and managing concurrent conversations, and implementing human-in-the-loop approval flows where agents wait for user confirmation before executing actions. This is what production AI systems actually look like, and Temporal handles the orchestration complexity so you can focus on [...] That's it. One wrapper. When you run an agent with `TemporalAgent`, all the non-deterministic work (model calls, tool executions, external API calls) gets automatically offloaded to Temporal Activities with built-in retry policies. Your coordination logic runs deterministically as a Workflow. (For more details, see the Pydantic AI Temporal documentation.)\n\nWant to see this in action? Join our live coding session \u2192 where we'll build a production AI agent system with the Pydantic team. [...] Nice and simple. The only catch is that agent calls aren\u2019t deterministic \u2014 they depend on external APIs \u2014 so Temporal requires them to run as activities. The Pydantic AI Temporal integration takes care of that for you, wrapping all the I/O so you can keep using your agent normally inside workflows.\n\nHere's that same agent, now ready for durable execution running on Temporal:",
+      "query": "Temporal activities async AI agents"
+    },
+    {
+      "title": "Multi\u2011Agent Coordination Playbook (MCP & AI Teamwork) - Jeeva AI",
+      "url": "https://www.jeeva.ai/blog/multi-agent-coordination-playbook-(mcp-ai-teamwork)-implementation-plan",
+      "content": "A Temporal workflow can coordinate synchronization points. Temporal, a workflow engine, allows us to define steps and wait conditions with timeouts. For example, we could model the project as a Temporal workflow where each agent\u2019s task is an asynchronous activity; the workflow will wait for a promise/future from each activity. If one doesn\u2019t complete in time, we can trigger a fallback or reassign. Temporal provides durability \u2013 even if our system restarts, it knows which tasks are done and [...] which are pending. We might not need full Temporal for simpler projects, but for long-running complex ones, it ensures nothing slips through cracks. It essentially acts as a master synchronization backbone, so at defined checkpoints (say after all modules coded and tested) the next phase only starts when all prerequisites are done, and it can even recover if an agent fails mid-way. [...] of the project\u2019s state. Our system will maintain an activity log in the context as well \u2013 a chronological list of significant events (task assigned, result produced, agent X requests Y, etc.). This is invaluable both for the agents (they can quickly review what has happened so far if needed, akin to scrolling up in a chat) and for debugging.",
+      "query": "Temporal activities async AI agents"
+    },
+    {
+      "title": "Q&A from Learn How to Build AI Agents with Temporal webinar",
+      "url": "https://community.temporal.io/t/q-a-from-learn-how-to-build-ai-agents-with-temporal-webinar/17050",
+      "content": "Yes Temporal is also great for agents that don\u2019t have a chat interface.\n\nIs it possible to integrate multiple AI agents to single workflow?  \nWorkflow is code, so you can have many agents running in a single workflow.\n\nDo we have any multi-agent use cases?  \nAn underwriting workflow for either the financial or healthcare sector.\n\n## Implementation Approaches [...] Hi all! Do you have an example of integrating a graph agentic framework like PydanticAI or Langraph with Temporal?  \nYou don\u2019t need a graph with Temporal. Durable Execution gives you more flexibility than a graph. Temporal would replace LangGraph.\n\nPydantic Temporal example here (note this is not Pydantic AI specifically): sdk-python/temporalio/contrib/pydantic.py at main \u00b7 temporalio/sdk-python \u00b7 GitHub\n\n Webinar: Learn How to Build AI Agents with Temporal\n\n  \n\n### Related topics [...] Would we simply pass the chat history between different activities via a data class in a loop until the chat ends?  \nYes! You can see how it is done here: GitHub - temporal-community/temporal-ai-agent: This demo shows a multi-turn conversation with an AI agent running inside a Temporal workflow.  \nBut the short answer is yes, user interaction, goals, and prompts are sent via data classes to activities.",
+      "query": "Temporal activities async AI agents"
+    }
+  ],
+  "recommendations": [
+    "Further research needed on: Durable execution, AI agents, Persistence",
+    "Explore Temporal's workflow retry mechanisms",
+    "Investigate agent orchestration patterns",
+    "Consider event sourcing for agent state"
+  ]
+}

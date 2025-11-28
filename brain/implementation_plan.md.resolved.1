@@ -1,0 +1,35 @@
+# Deep Agent with Memory Implementation Plan
+
+## Goal Description
+Create a "deep agent" using MiniMax (`m2.env`) and a database (`db.env`) for short-term and long-term memory.
+
+## Proposed Changes
+
+### Configuration
+- Load secrets from [/adapt/secrets/m2.env](file:///adapt/secrets/m2.env) and [/adapt/secrets/db.env](file:///adapt/secrets/db.env).
+- Parse `POSTGRES_CLUSTER_URLS` to get the connection string.
+
+### Agent Structure
+- **Model**: `ChatMiniMax` from `langchain_community`.
+- **Agent**: [create_deep_agent](file:///adapt/platform/novaops/frameworks/lang/langchain-deepagents/libs/deepagents/deepagents/graph.py#40-162) from [deepagents](file:///adapt/platform/novaops/frameworks/lang/langchain-deepagents).
+- **Short-term memory**: `PostgresSaver` from `langgraph.checkpoint.postgres` to persist state.
+- **Long-term memory**: Custom tools (`save_memory`, `recall_memory`) backed by a `memories` table in Postgres.
+
+### Components
+1.  **`deepagents-quickstarts/memory_agent/agent.py`**: Main entry point.
+    - Loads env vars.
+    - Initializes `ChatMiniMax`.
+    - Initializes `PostgresSaver`.
+    - Creates agent with [create_deep_agent](file:///adapt/platform/novaops/frameworks/lang/langchain-deepagents/libs/deepagents/deepagents/graph.py#40-162).
+2.  **`deepagents-quickstarts/memory_agent/memory_tools.py`**:
+    - `save_memory(content: str)`: Saves a memory snippet.
+    - `recall_memory(query: str)`: Simple keyword search or vector search (if pgvector available, otherwise simple text search for now).
+    - `init_db()`: Helper to create the table.
+
+## Verification Plan
+### Automated Tests
+- Run the agent script.
+- Test 1: Tell the agent "My name is Alice".
+- Test 2: Restart the agent (new process, same thread ID). Ask "What is my name?". Verify it answers "Alice" (Short-term persistence).
+- Test 3: Tell the agent "Remember that I like pizza".
+- Test 4: Restart agent. Ask "What do I like?". Verify it uses `recall_memory` to find "pizza" (Long-term memory).

@@ -1,0 +1,51 @@
+{
+  "worker_id": 9,
+  "topic": "Multi-agent coordination with Temporal",
+  "timestamp": "2025-11-26T18:22:14.133416",
+  "duration_seconds": 4.772457,
+  "executive_summary": "Research on 'Multi-agent coordination with Temporal' completed. Found 10 sources with 5 key concepts identified. Coverage: 50.0%",
+  "key_findings": [
+    "Identified 10 relevant sources",
+    "Found 5 key concepts related to Temporal and AI agents",
+    "Coverage score: 50.0%",
+    "Research completed autonomously in parallel with other workers"
+  ],
+  "sources": [
+    {
+      "title": "Multi-agent Workflows: Use cases & architecture with Temporal",
+      "url": "https://temporal.io/blog/what-are-multi-agent-workflows",
+      "content": "For multi-agent systems that involve parallel tasks, Temporal\u2019s parallelism and concurrency control enable multiple agents to work simultaneously without blocking each other. This is ideal when agents operate independently on sub-tasks that later need to converge.\n\nFor example, in a recommendation system, separate agents might handle user data processing, item analysis, and scoring. Temporal can coordinate the simultaneous execution of these tasks and merge results efficiently. [...] Temporal is well-suited to support multi-agent workflows because it handles the orchestration, state management, and coordination across different agents (AI or otherwise).\n\nIn addition to this, Temporal doesn\u2019t need you to build specific code for each agentic framework.\n\nAs Anton Tsitou, CTO at Spiral Scout, noted: [...] Temporal\u2019s orchestration here allows each agent to function independently yet stay coordinated, enabling seamless and efficient customer support automation.\n\n## In summary#\n\nTemporal\u2019s orchestration, durability, and ability to manage complex stateful and stateless interactions make it a perfect foundation for multi-agent workflows in AI applications. Temporal ensures that these interactions are reliable, efficient, and resilient, even as workflows grow in complexity or scale.",
+      "query": "Multi-agent coordination with Temporal"
+    },
+    {
+      "title": "Orchestrating ambient agents with Temporal",
+      "url": "https://temporal.io/blog/orchestrating-ambient-agents-with-temporal",
+      "content": "visualize their coordination in the UI helped me fine-tune the Schedules and Signal handling. In short, Temporal\u2019s UI turned the black-box nature of AI agents into a glass box, where I could see and debug the internals of the multi-agent orchestration easily. [...] Coordinating several agents and services \u2014 ticker feeds, a trading agent, a performance judge, and more \u2014 can get complicated fast. Temporal simplified this by acting as the central orchestrator for all agent workflows. In my design, each major component is a separate Workflow (or set of Workflows) and Temporal manages their lifecycles and interactions. This yielded a system where agents can run truly 24\u00d77 with resilience and clarity in how they interact. [...] Team-friendly design \u2014 Temporal enforces a clean separation of concerns: one engineer can focus on a single Workflow, develop and test it locally, and deploy it independently. This makes collaboration easy, even on a multi-agent system.",
+      "query": "Multi-agent coordination with Temporal"
+    },
+    {
+      "title": "[2308.14042] Multi-agent Coordination Under Temporal Logic Tasks ...",
+      "url": "https://arxiv.org/abs/2308.14042",
+      "content": "|  |  |\n --- |\n| Comments: | 6 pages, 2 figures |\n| Subjects: | Multiagent Systems (cs.MA); Robotics (cs.RO) |\n| Cite as: | arXiv:2308.14042 [cs.MA] |\n|  | (or  arXiv:2308.14042v2 [cs.MA] for this version) |\n|  |  Focus to learn more  arXiv-issued DOI via DataCite |\n\n## Submission history\n\n## Access Paper:\n\nlicense icon\n\n### References & Citations\n\n## BibTeX formatted citation\n\n### Bookmark\n\nBibSonomy logo\nReddit logo\n\n# Bibliographic and Citation Tools [...] Cornell University\narxiv logo\n\nHelp | Advanced Search\n\narXiv logo\nCornell University Logo\n\n## quick links\n\n# Computer Science > Multiagent Systems\n\n# Title:Multi-agent Coordination Under Temporal Logic Tasks and Team-Wise Intermittent Communication [...] # Code, Data and Media Associated with this Article\n\n# Demos\n\n# Recommenders and Search Tools\n\n# arXivLabs: experimental projects with community collaborators\n\narXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website.",
+      "query": "Multi-agent coordination with Temporal"
+    },
+    {
+      "title": "[PDF] Concurrent Multi-Agent Systems with Temporal Logic Objectives",
+      "url": "http://research.me.udel.edu/~btanner/Papers/masgame_6-27.pdf",
+      "content": "To do this, we use an incentive-centered design with a new de\ufb01nition of agents\u2019 utilities, that allows implicit cooperation to emerge as an equilibrum. We decide which interaction outcomes are stable (in a Nash sense) in this non-cooperative, concurrent game the agents are engaged in. Then we consider cooperative games with temporal logic objectives in which agents can form coalitions. A decision procedure for cooperative equilibiria is provided. To coordinate, agents communicate and negotiate [...] This paper exploits and extends recent game theoretic results [7,10] for negotiation-based behavior planning in multi-agent systems with temporal logic control objectives. Existing results do not \ufb01t particularly well in the case considered here. First, with agents having independent objectives, either as a Boolean utility value  or a set of ranked objectives , implicit cooperation between agents is not encouraged. Furthermore, is that it is not clear how a single equilibrium is agreed upon [...] Table 1: Nash equilibria for all payo\ufb00vectors in concurrent game G with B\u00a8 uchi objectives PV (0,0,0) (0,0,1) (0,1,0) (1,0,0) (1,1,0) (0,1,1) (1,0,1) (1,1,1) case 1 \u2713 \u2713 \u2713 \u2713 \u2713 \u2713 \u2713 \u2713 case 2 \u2713 \u2713 \u2713 \u2713 \u2713 \u2713 \u2713 \u2713 case 3 \u2713 \u0017 \u2713 \u2713 \u2713 \u0017 \u2713 \u2713 5.2 Agreeing on strategies through negotiation Negotiation is needed if coordination is to be decentralized. Here we will not consider team deviations, and thus focus on cases 1 and 3.",
+      "query": "Multi-agent coordination with Temporal"
+    },
+    {
+      "title": "Durable multi-agentic AI architecture with Temporal",
+      "url": "https://temporal.io/blog/using-multi-agent-architectures-with-temporal",
+      "content": "Orchestrating agents together is a particularly good fit for Temporal\u2019s orchestration architecture, as Temporal is great at durable orchestration of many tasks as part of an overall process.\n\nIn this post, we\u2019ll talk briefly about agent routing orchestration with Temporal, and then go deeper into task delegation.\n\n## Agentic term definitions#\n\nHere are some definitions to help you out. [...] Temporal Logo\n\n# Using the power of multi-agent architectures with Temporal\n\nMulti-agent architecture enables several powerful patterns. Here, I\u2019ll start from the basics, and describe how Temporal can be used to make building multi-agent systems simple, durable, and fun.\n\n## Why multi-agent architectures?# [...] This system delegates tasks to multiple agents which fulfill multiple roles in the overall system and have only role-related access to the backing database. Temporal orchestrates all of these agents easily, transparently, and durably. The agents are resilient due to Temporal Activities.\n\n## Design patterns#\n\nHere are the design patterns and decisions I made while building this system:\n\n### Lifecycle and interaction#",
+      "query": "Multi-agent coordination with Temporal"
+    }
+  ],
+  "recommendations": [
+    "Further research needed on: Agent orchestration, Multi-agent systems, AI agents",
+    "Explore Temporal's workflow retry mechanisms",
+    "Investigate agent orchestration patterns",
+    "Consider event sourcing for agent state"
+  ]
+}

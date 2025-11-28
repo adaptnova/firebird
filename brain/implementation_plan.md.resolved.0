@@ -1,0 +1,23 @@
+# Deep Agent with Memory Implementation Plan
+
+## Goal Description
+Create a "deep agent" using MiniMax (`m2.env`) and a database (`db.env`) for short-term and long-term memory.
+
+## Proposed Changes
+
+### Configuration
+- Load secrets from [/adapt/secrets/m2.env](file:///adapt/secrets/m2.env) and [/adapt/secrets/db.env](file:///adapt/secrets/db.env).
+
+### Agent Structure
+- Use `LangGraph` for the agent loop.
+- **Short-term memory**: Managed by `LangGraph`'s `StateGraph` (passing messages in state).
+- **Long-term memory**: Store conversation history or "memories" in a PostgreSQL database (using credentials from `db.env`).
+
+### Components
+- **Database Manager**: A class to handle connection and CRUD operations for memories.
+- **Agent**: A LangGraph agent that uses MiniMax.
+- **Tools**: Tools to save/retrieve memories if explicit memory management is desired, or automatic hooks.
+
+## Verification Plan
+### Automated Tests
+- Run the agent script and verify it can recall information from previous turns (short-term) and previous sessions (long-term).

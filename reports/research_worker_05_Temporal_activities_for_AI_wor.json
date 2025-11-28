@@ -1,0 +1,51 @@
+{
+  "worker_id": 5,
+  "topic": "Temporal activities for AI workflows",
+  "timestamp": "2025-11-26T18:22:11.848926",
+  "duration_seconds": 2.487966,
+  "executive_summary": "Research on 'Temporal activities for AI workflows' completed. Found 10 sources with 3 key concepts identified. Coverage: 30.0%",
+  "key_findings": [
+    "Identified 10 relevant sources",
+    "Found 3 key concepts related to Temporal and AI agents",
+    "Coverage score: 30.0%",
+    "Research completed autonomously in parallel with other workers"
+  ],
+  "sources": [
+    {
+      "title": "ML Workflows with Temporal: Optimizing AI & Data Engineering",
+      "url": "https://temporal.io/blog/ai-ml-and-data-engineering-workflows-with-temporal",
+      "content": "Temporal's Workflow and Activity model is designed specifically for developers dealing with complex orchestration tasks. Here\u2019s what stands out:\n\n### Workflows and Activities#\n\nWorkflows in Temporal define the sequence of operations or steps in your process and run exactly once. They\u2019re dynamic and can execute steps based on data and results of previous steps, which is critical in the AI/ML domain as the next steps often depend on the data. [...] Activities represent the individual tasks within your Workflow. They're the workhorses, designed to handle the unreliable bits of your process, like calls to external services or computations. Activities help you manage risk; Temporal automatically retries failed Activities, and you can configure these retries, along with timeouts, to fit your needs.\n\n### Example: Training and Testing Models#\n\nHere is a sample of a Python Workflow that trains, tests, and deploys a model. [...] Temporal provides a robust, developer-friendly platform for orchestrating complex workflows. Its focus on code-first design, reliability, and flexibility makes it a valuable tool in the developer\u2019s toolkit, especially for teams in the AI, ML, and data engineering fields.\n\nGive Temporal a try for your processes and see how it can streamline your workflows, reduce operational complexity, and let you focus on building great software.\n\nSHARE\n\nTemporal Cloud\n\nReady to see for yourself?",
+      "query": "Temporal activities for AI workflows"
+    },
+    {
+      "title": "Temporal - Pydantic AI",
+      "url": "https://ai.pydantic.dev/durable_execution/temporal/",
+      "content": "In the case of Pydantic AI agents, integration with Temporal means that model requests, tool calls that may require I/O, and MCP server communication all need to be offloaded to Temporal activities due to their I/O requirements, while the logic that coordinates them (i.e. the agent run) lives in the workflow. Code that handles a scheduled job or web request can then execute the workflow, which will in turn execute the activities as needed. [...] 4. We connect to the Temporal server which keeps track of workflow and activity execution.\n5. This assumes the Temporal server is running locally.\n6. The `PydanticAIPlugin` tells Temporal to use Pydantic for serialization and deserialization, and to treat `UserError` exceptions as non-retryable.\n7. We start the worker that will listen on the specified task queue and run workflows and activities. In a real world application, this might be run in a separate service. [...] When `TemporalAgent` dynamically creates activities for the wrapped agent's model requests and toolsets (specifically those that implement their own tool listing and calling, i.e. `FunctionToolset` and `MCPServer`), their names are derived from the agent's `name` and the toolsets' `id`s. These fields are normally optional, but are required to be set when using Temporal. They should not be changed once the durable agent has been deployed to production as this would break active workflows.",
+      "query": "Temporal activities for AI workflows"
+    },
+    {
+      "title": "9 ways to use Temporal in your AI Workflows",
+      "url": "https://temporal.io/blog/nine-ways-to-use-temporal-in-your-ai-workflows",
+      "content": "Temporal can significantly benefit AI workflows in several ways due to its inherent capabilities around durability, scale, and failure handling. Specifically, AI and machine learning workflows often involve complex, long-running processes that can benefit from Temporal's workflow orchestration and state management features.\n\nA few key areas in which Temporal can be helpful for your AI workloads include the following: [...] 9. Observability and Debugging - Managing complex AI workflows requires insight into what's happening at each stage of the process. Temporal allows you to investigate each execution and get insight into any issues that may be blocking a function. These tools help developers monitor workflow execution, optimize performance, and quickly identify issues. [...] 1. Workflow Orchestration for AI Pipelines - AI applications often involve complex pipelines consisting of data collection, preprocessing, training, evaluation, and inference stages. Temporal orchestrates these stages reliably across distributed systems. By managing dependencies and task execution order, Temporal ensures that your AI pipeline progresses smoothly, even in the event of failures.",
+      "query": "Temporal activities for AI workflows"
+    },
+    {
+      "title": "Temporal with AI: Durable Orchestration for Intelligent Systems",
+      "url": "https://rzaeeff.medium.com/temporal-with-ai-cfb7bb1ae0ed",
+      "content": "Temporal allows you to share context data across multiple activities within a workflow without manually passing it through each service or method call. This is achieved by leveraging the workflow\u2019s in-memory state, which persists reliably throughout its execution. You can store metadata, request context, or correlation IDs once in the workflow class and access it in all subsequent activities. Unlike traditional service orchestration, you don\u2019t need to propagate headers or session tokens [...] During AI system development, we often need to write custom workflows and manage complex execution flows. Temporal handles these scenarios effortlessly by providing built-in tools for state management, automatic retries, durability, scalability and observability.\n\n> \u201cTemporal makes a lot of this easier. You\u2019re not building it all from scratch. Temporal is the event system that abstracts away the complexities of process management.\u201d\n\n## Temporal Server [...] ## Signals and Queries\n\n Signals: Allow external systems or users to send asynchronous data or instructions to running workflows. Perfect for dynamic updates, user interactions, or AI feedback loops.\n Queries: Enable you to fetch read-only state from a running workflow without affecting its execution.\n\nThese features make Temporal especially valuable for real-time AI systems where human-in-the-loop actions, feedback adjustments, or external control are part of the flow.",
+      "query": "Temporal activities for AI workflows"
+    },
+    {
+      "title": "Trace Temporal Workflows with Langfuse",
+      "url": "https://langfuse.com/integrations/frameworks/temporal",
+      "content": "## Use Case: Deep Research Agent with Temporal\n\nIn this example, we\u2019ll build a deep research agent that:\n\n Uses Temporal workflows to orchestrate long-running research tasks\n Leverages the OpenAI Agents SDK for research planning and content generation\n Sends all observability data to Langfuse via OpenTelemetry\n\nThis setup allows you to: [...] ## 5. Define Temporal Activities\n\nCreate activities that will be executed as part of the research workflow. Each activity represents a discrete step in the research process. [...] When you execute the research workflow, both Temporal `OpenAIAgentsPlugin` and the OpenInference `OpenAIAgentsInstrumentor` will send OTel spans to Langfuse.\n\nNote: This requires a running Temporal server. You can start a local dev server with:\n\n```\ntemporal server start-dev temporal  server start-dev\n```",
+      "query": "Temporal activities for AI workflows"
+    }
+  ],
+  "recommendations": [
+    "Further research needed on: Temporal workflows, AI agents, State management",
+    "Explore Temporal's workflow retry mechanisms",
+    "Investigate agent orchestration patterns",
+    "Consider event sourcing for agent state"
+  ]
+}

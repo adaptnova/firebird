@@ -1,0 +1,51 @@
+{
+  "worker_id": 11,
+  "topic": "AI agent workflows crash recovery",
+  "timestamp": "2025-11-26T18:22:14.367348",
+  "duration_seconds": 5.006388,
+  "executive_summary": "Research on 'AI agent workflows crash recovery' completed. Found 10 sources with 2 key concepts identified. Coverage: 20.0%",
+  "key_findings": [
+    "Identified 10 relevant sources",
+    "Found 2 key concepts related to Temporal and AI agents",
+    "Coverage score: 20.0%",
+    "Research completed autonomously in parallel with other workers"
+  ],
+  "sources": [
+    {
+      "title": "Durable Execution for Building Crashproof AI Agents - DBOS",
+      "url": "https://www.dbos.dev/blog/durable-execution-crashproof-ai-agents",
+      "content": "Workflow Reliability: The workflow must be durable and fault tolerant. If the agent is interrupted during refund processing (e.g., server crashes, network connectivity issues), it should automatically recover upon restart, complete the refund, and seamlessly proceed to the next step. [...] Integrating AI agents with production software tools is where durable execution shines. By ensuring that every step in an asynchronous workflow is fault-tolerant and persistent, progress is never lost \u2013 even in case of failures. Durable execution simplifies the orchestration of complex interactions beyond LLMs, extending AI agents' capabilities into the real world and making them more reliable in production. [...] Now, let's implement the asynchronous human-in-the-loop agentic workflow using DBOS.\n\nFor the \"Process Refund Workflow\", we can write a normal Python function decorated with @DBOS.workflow that calls into multiple steps, enabling durable orchestration within the program. Each step within the workflow is decorated with @DBOS.step, or @DBOS.transaction (if the step contains a database operation).",
+      "query": "AI agent workflows crash recovery"
+    },
+    {
+      "title": "5 Steps to Build Exception Handling for AI Agent Failures | Datagrid",
+      "url": "https://www.datagrid.com/blog/exception-handling-frameworks-ai-agents",
+      "content": "Traditional rollback strategies destroy hours of work when AI agents fail mid-process. Your RFP processing agent analyzes 50 pages of requirements, then crashes. Standard recovery means starting over and missing bid deadlines because you lost all that accumulated context. [...] Recovery orchestration coordinates context restoration across multiple agents in your workflow pipeline. When upstream agents recover, downstream agents get consistent state information instead of stale or corrupted context that would break your entire automated system.\n\n## Step 3: Prevent Cascading Failures Across Agent Networks [...] When you do escalate to humans, preserve the agent context so operators understand what was happening and why agents struggled with specific tasks. Hand over reasoning chains, confidence scores, and partial results instead of making humans start from scratch.\n\nYour escalation decisions should match the stakes involved. Automated recovery makes sense for routine processing with clear failure patterns, but customer-facing workflows need human oversight when agents show uncertainty.",
+      "query": "AI agent workflows crash recovery"
+    },
+    {
+      "title": "Multi-Agent AI Failure Recovery That Actually Works | Galileo",
+      "url": "https://galileo.ai/blog/multi-agent-ai-system-failure-recovery",
+      "content": "Failure Recovery in Multi-Agent AI Systems is the process of detecting, containing, and recovering from failures while maintaining system functionality across distributed intelligent components.\n\nUnlike single-agent systems that focus on restoring a single component, multi-agent recovery must account for the complex interdependencies between agents and their collective state. [...] Failure Recovery in Multi-Agent AI Systems is the process of detecting, containing, and recovering from failures while maintaining system functionality across distributed intelligent components.\n\nUnlike single-agent systems that focus on restoring a single component, multi-agent recovery must account for the complex interdependencies between agents and their collective state. [...] The culprit isn't bad engineering. It's that traditional failure recovery was designed for stateless microservices, not intelligent agents that maintain context, learn from interactions, and coordinate complex decision-making across distributed systems.\n\nWhen an AI agent fails, it loses conversation history, learned preferences, and specialized knowledge that can't be restored with a simple restart.",
+      "query": "AI agent workflows crash recovery"
+    },
+    {
+      "title": "Error Recovery and Fallback Strategies in AI Agent Development",
+      "url": "https://www.gocodeo.com/post/error-recovery-and-fallback-strategies-in-ai-agent-development",
+      "content": "facts that propagate through workflows. That is why error recovery and fallback strategies are a core architectural concern for developers building modern AI agents. [...] Error recovery in AI agent systems is not merely about handling exceptions. It is about architecting for resilience in a probabilistic, dynamic, and interconnected environment. Developers must approach agent design with the mindset that failures will occur frequently and unpredictably, and that system architecture must absorb these failures without compromising task correctness or user trust. [...] `if not os.path.exists(\"/tmp/config.yaml\"):  \n    trigger_replan(\"config_file_missing\")`\n\nThis strategy enables agents to correct or recover from silent failures that would otherwise be undetected.\n\n\u200d\n\n##### Checkpointing and Recovery in Multi-Step Plans\n\n###### Context:\n\nAgents often operate through multi-step plans, especially in coding agents, infrastructure agents, or data transformation workflows. When failure happens midway, resuming from scratch wastes resources.",
+      "query": "AI agent workflows crash recovery"
+    },
+    {
+      "title": "Why Your AI Agent Keeps Forgetting Everything (And How to Fix It)",
+      "url": "https://towardsai.net/p/machine-learning/why-your-ai-agent-keeps-forgetting-everything-and-how-to-fix-it",
+      "content": "Here\u2019s the thing: as AI moves from \u201ccool demos\u201d to actual production systems that real people depend on, reliability has become the make-or-break factor. Agentic AI systems, where agents actually plan and make decisions across multiple tools, need workflows that can survive failures, remember context for hours or even days, and recover when (not if) things break. [...] While everyone obsesses over model performance, the real bottleneck in production AI is reliability. Workflows crash and lose context. Agents forget mid-task. Debugging becomes impossible. Your team spends more time fixing orchestration than on improving the AI.\n\nThis article explores why traditional orchestration breaks down with agentic AI, what that fragility actually costs you, and how durable workflows are emerging as the architecture pattern that makes AI systems production-ready. [...] Everything gets saved. Every step, every decision, every piece of state goes into durable storage as it happens. Service crashes? No problem. The system picks up exactly where it left off \u2014 no context lost.\n\nReplay just works. Workflows can replay their entire history to reconstruct the state after failures. It\u2019s deterministic, which means you get the same result every time. This isn\u2019t magic \u2014 it\u2019s just good engineering.",
+      "query": "AI agent workflows crash recovery"
+    }
+  ],
+  "recommendations": [
+    "Further research needed on: Durable execution, AI agents",
+    "Explore Temporal's workflow retry mechanisms",
+    "Investigate agent orchestration patterns",
+    "Consider event sourcing for agent state"
+  ]
+}

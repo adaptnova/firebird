@@ -1,0 +1,51 @@
+{
+  "worker_id": 18,
+  "topic": "AI agent temporal workflows best practices",
+  "timestamp": "2025-11-26T18:22:18.367946",
+  "duration_seconds": 9.006976,
+  "executive_summary": "Research on 'AI agent temporal workflows best practices' completed. Found 10 sources with 3 key concepts identified. Coverage: 30.0%",
+  "key_findings": [
+    "Identified 10 relevant sources",
+    "Found 3 key concepts related to Temporal and AI agents",
+    "Coverage score: 30.0%",
+    "Research completed autonomously in parallel with other workers"
+  ],
+  "sources": [
+    {
+      "title": "Temporal Workflow Orchestration: Building Reliable Agentic AI ...",
+      "url": "https://dev.to/akki907/temporal-workflow-orchestration-building-reliable-agentic-ai-systems-3bpm",
+      "content": "## Benefits of Temporal for Agentic AI\n\n### 1. Reliability\n\n### 2. Observability\n\n### 3. Scalability\n\n### 4. Developer Experience\n\n### 5. Production-Ready\n\n## Best Practices\n\n### 1. Activity Design\n\n### 2. Workflow Design\n\n### 3. Error Handling\n\n### 4. Performance\n\n### 5. Testing\n\n## Conclusion [...] Use Case: When each step depends on the previous step's output, like a data processing pipeline, trading workflows where analysis depends on market data, or ETL processes.\n\nBest Practices:\n\n### 2. Parallel Execution\n\nOverview: Execute multiple independent activities concurrently to maximize throughput and minimize total execution time. This pattern is essential for performance optimization when activities don't depend on each other.\n\nArchitecture:\n\nParallel Execution\n\nParallel Execution [...] Use Case: Dynamic workflow routing, A/B testing, adaptive processing based on data characteristics, market condition-based trading strategies, or user preference-driven workflows.\n\nBest Practices:\n\n### 5. Fan-Out/Fan-In Pattern\n\nOverview: Distribute work across multiple activities (fan-out), then collect and aggregate results (fan-in). This pattern is ideal for processing large datasets, batch operations, or map-reduce scenarios.\n\nArchitecture:\n\nFan-Out/Fan-In Pattern\n\nFan-Out/Fan-In Pattern",
+      "query": "AI agent temporal workflows best practices"
+    },
+    {
+      "title": "Durable Agent using OpenAI Agents SDK - Temporal Docs",
+      "url": "https://docs.temporal.io/ai-cookbook/durable-agent-with-tools",
+      "content": "```\nfrom dataclasses import dataclass from  dataclasses import  dataclass from temporalio import activity from  temporalio import  activity import math import  math # Temporal best practice: Create a data structure to hold the request parameters. [...] # Temporal best practice: Create a data structure to hold the request parameters. @dataclass @dataclass class Weather: class  Weather:     city: str     city:  str     temperature_range: str     temperature_range:  str     conditions: str     conditions:  str  @activity.defn @activity.defn async def get_weather(city: str) -> Weather: async  def  get_weather(city:  str)  ->  Weather:     \"\"\"Get the weather for a given city.\"\"\"     \"\"\"Get the weather for a given city.\"\"\"     return [...] # Use the plugin to configure Temporal for use with OpenAI Agents SDK         plugins=[OpenAIAgentsPlugin()],         plugins =[OpenAIAgentsPlugin()],     )     )      # Start workflow     \n# Start workflow     print( 80  \"-\" )     print( 80    \"-\"  )      # Get user input     \n# Get user input     user_input = input(\"Enter a question: \")     user_input =  input(\"Enter a question: \")      # Submit the Hello World Agent workflow for execution",
+      "query": "AI agent temporal workflows best practices"
+    },
+    {
+      "title": "Agentic AI Workflows: Why Orchestration with Temporal is Key",
+      "url": "https://intuitionlabs.ai/articles/agentic-ai-temporal-orchestration",
+      "content": "| Error Propagation | Failures cascade through agents. Without checkpoints, an upstream error corrupts downstream logic. COCO notes lack of correction leads to compounding failures (( \"Highlights: Large,COCO employs three\")). | Implement monitoring and retries outside main path. Use stateful rollback: Temporal\u2019s event-sourcing allows replays and compensations rather than naive restarts. Patterns like the Saga (with durable state) can safely compensate partial failures. | [...] | Long-Running Workflow Disruption | Agent pauses or system restart mid-flow. E.g., an agent waits days for human approval, but intermediate state is lost on crash. | Utilize durable state persistence. Workflow engines snapshot context; after downtime, the agent resumes automatically at last known point. (Temporal\u2019s durable virtual memory survives process restarts (( \"Highlights: The core abstraction in Temporal,process and Temporal service failures\")).) | [...] | State Synchronization Issues | Agents draw on inconsistent data. e.g., OrderAgent posts \u201cpaid\u201d, InventoryAgent reads \u201cunpaid\u201d before seeing update (( \"Highlights: Stale State Propagation: Agent A,duplicate work or contradictory outcomes\")), causing contradiction. | Use centralized workflow orchestration with a single source of truth (avoids stale reads). It can serialize steps to ensure consistency. Temporal\u2019s event-history ensures updates propagate in order. |",
+      "query": "AI agent temporal workflows best practices"
+    },
+    {
+      "title": "Best Practices for Building Temporal Workflows - Medium",
+      "url": "https://medium.com/@ajayshekar01/best-practices-for-building-temporal-workflows-a-practical-guide-with-examples-914fedd2819c",
+      "content": "By following these best practices, you can ensure your Temporal workflows remain scalable, maintainable, and resilient. Offload business logic to activities, keep activities atomic, and handle arguments thoughtfully. Careful design minimizes non-determinism issues and technical debt, making your workflows easier to evolve and maintain over time.\n\nHappy coding! \ud83d\ude80\n\nTemporal\n\nWorkflow As Code\n\n## Written by Ajay Shekar\n\n4 followers\n\n\u00b77 following [...] Temporal is a powerful open-source platform for orchestrating microservices and building scalable workflows. However, designing effective workflows requires a careful approach to ensure scalability, maintainability, and resilience. This article outlines best practices for Temporal workflows and provides practical insights to avoid common pitfalls. Let\u2019s explore key principles with examples.\n\n## 1. Minimize Business Logic in Workflows; Use Activities for Heavy Lifting [...] Best Practice: Keep workflow code focused on orchestration. Delegate business logic to activities to avoid complexity and ensure workflows remain deterministic.\n\nTemporal requires workflows to be deterministic so that replays can occur without discrepancies. Business logic changes can introduce non-determinism, leading to replay errors. Offloading logic to activities helps avoid this.\n\nExample:  \nA payment processing system involves two steps:",
+      "query": "AI agent temporal workflows best practices"
+    },
+    {
+      "title": "Indestructible AI Agents: A Guide to Using Temporal - ActiveWizards",
+      "url": "https://activewizards.com/blog/indestructible-ai-agents-a-guide-to-using-temporal",
+      "content": "Asynchronous Invocation: For workflows that run longer than a few seconds, don't wait for them to finish. Your client should start the workflow, get a handle, and then query the handle for status or receive a completion signal later (e.g., via a webhook or Kafka message). [...] Idempotency is Non-Negotiable: Activities can be retried. If your activity is \"create user account,\" you must ensure running it twice doesn't create two accounts. Design your external systems to be idempotent.\n Configure Timeouts and Retries Intelligently: An LLM call might take 2 minutes. A `start\\_to\\_close\\_timeout` of 1 minute will cause it to fail and retry unnecessarily. Match timeouts to the task, and configure retry policies to avoid excessive cost on activities that are expensive. [...] Diagram 1: The durable agent architecture using Temporal.\n\n## A Practical Example: A Durable Document Analysis Agent\n\nLet's design an agent that analyzes a list of 10,000 document URLs. This workflow must be able to run for hours or days and survive any interruptions.\n\n### Step 1: Define the \"Tool\" as an Activity\n\nOur non-deterministic, potentially fallible LLM call becomes a Temporal Activity. Temporal's retry policies will automatically handle transient failures.",
+      "query": "AI agent temporal workflows best practices"
+    }
+  ],
+  "recommendations": [
+    "Further research needed on: Temporal workflows, AI agents, Persistence",
+    "Explore Temporal's workflow retry mechanisms",
+    "Investigate agent orchestration patterns",
+    "Consider event sourcing for agent state"
+  ]
+}

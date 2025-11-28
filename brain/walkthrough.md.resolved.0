@@ -1,0 +1,56 @@
+# Deep Agent with Memory Walkthrough
+
+This walkthrough demonstrates the implementation of a Deep Agent with both short-term and long-term memory capabilities, using MiniMax (via Anthropic API) and PostgreSQL.
+
+## Features
+
+1.  **Long-Term Memory**: Uses a custom PostgreSQL table (`agent_memories`) to store and recall information indefinitely.
+    *   Tools: [save_memory](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/memory_tools.py#47-68), [recall_memory](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/memory_tools.py#69-98).
+2.  **Short-Term Memory**: Uses `langgraph.checkpoint.postgres.PostgresSaver` to persist conversation state across sessions.
+3.  **MiniMax Integration**: Uses `langchain-anthropic` to communicate with the MiniMax LLM via its Anthropic-compatible endpoint.
+4.  **Observability**: Integrated with LangSmith for tracing.
+
+## Verification
+
+### 1. Memory Persistence
+
+The agent was tested by saving a user's name ("Bob") and recalling it after a process restart.
+
+**Session 1:**
+```
+User: Please save to memory that my name is Bob
+Agent: [Calling Tool: save_memory with {'content': "User's name is Bob"}]
+[Tool Output]: Successfully saved to memory: User's name is Bob
+```
+
+**Session 2 (After Restart):**
+```
+User: What is my name?
+Agent: [Calling Tool: recall_memory with {'query': 'name'}]
+[Tool Output]: [2025-11-27 18:01:40.845059] User's name is Bob
+Agent: Your name is **Bob**.
+```
+
+### 2. Tool Execution
+
+The agent correctly identifies when to use tools based on the user's request and the system prompt.
+
+### 3. Environment Configuration
+
+- **Secrets**: Loaded from [/adapt/secrets/m2.env](file:///adapt/secrets/m2.env) and [/adapt/secrets/db.env](file:///adapt/secrets/db.env).
+- **LangSmith**: Configured with provided API keys.
+- **Dependencies**: Uses `langchain-anthropic` and `langgraph` (mixed installed/repo versions where necessary).
+
+## Code Structure
+
+- **[agent.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/agent.py)**: Main agent entry point. Configures the agent, tools, and environment.
+- **[memory_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/memory_tools.py)**: Defines [save_memory](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/memory_tools.py#47-68) and [recall_memory](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/memory_tools.py#69-98) tools and database initialization.
+
+## Usage
+
+To run the agent:
+
+```bash
+cd /adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent
+python3 agent.py
+```

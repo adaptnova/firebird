@@ -1,0 +1,51 @@
+{
+  "worker_id": 1,
+  "topic": "Temporal workflow patterns for AI agents",
+  "timestamp": "2025-11-26T18:22:11.815806",
+  "duration_seconds": 2.454865,
+  "executive_summary": "Research on 'Temporal workflow patterns for AI agents' completed. Found 10 sources with 2 key concepts identified. Coverage: 20.0%",
+  "key_findings": [
+    "Identified 10 relevant sources",
+    "Found 2 key concepts related to Temporal and AI agents",
+    "Coverage score: 20.0%",
+    "Research completed autonomously in parallel with other workers"
+  ],
+  "sources": [
+    {
+      "title": "Orchestrating ambient agents with Temporal",
+      "url": "https://temporal.io/blog/orchestrating-ambient-agents-with-temporal",
+      "content": "One of the most powerful patterns I implemented was using Temporal primitives (Workflows, Signals, Queries) as the \u201ctools\u201d that the AI agents call to interact with the world. In the Model Context Protocol (MCP) framework I used, agents invoke tools like `get_historical_ticks`, `place_order`, `get_portfolio_status`, etc., to gather data or execute trades. Instead of these tools being simple functions or external APIs, I made each one a Temporal primitive under the hood. This marriage of MCP [...] When orchestrating multiple intelligent agents, understanding what happened when is crucial. Temporal\u2019s Web UI became an invaluable tool for observing the system\u2019s behavior in real time. Every agent and tool in my system runs as a Temporal Workflow, which means I have a timeline of each Workflow\u2019s execution and Events accessible in the UI. This proved extremely helpful for debugging and trustworthiness: I could literally watch the agents\u2019 interactions step by step. For example, whenever the [...] Every time the agent \u201cplaces an order,\u201d it\u2019s invoking this Workflow. The use of Temporal here means the action is durable, and if the underlying Activity fails (say the exchange API is down, in a real scenario), Temporal can retry or timeout gracefully. In fact, every `@mcp.tool()` in the system is backed by a deterministic Temporal Workflow, which gives us automatic retries and full replay for audit/compliance out of the box. The AI agents\u2019 tools became durable operations. I didn\u2019t have to",
+      "query": "Temporal workflow patterns for AI agents"
+    },
+    {
+      "title": "Temporal + TypeScript: Building Bulletproof AI Agent Workflows",
+      "url": "https://medium.com/@sylvesterranjithfrancis/temporal-typescript-building-bulletproof-ai-agent-workflows-4863317144ce",
+      "content": "Building reliable AI agent systems that can handle failures, maintain state across long-running processes, and coordinate multiple services has been one of the most challenging aspects of production AI development. After working with various orchestration tools over the past month, I\u2019ve found that Temporal combined with TypeScript provides the most robust solution for AI workflow management that I\u2019ve encountered. [...] ## Production Deployment and Scaling Considerations\n\nWhen deploying Temporal AI workflows to production, there are several TypeScript-specific optimizations and patterns I\u2019ve found effective: [...] ## Handling Complex AI Workflow Patterns\n\nReal AI workflows often need to handle complex patterns like human-in-the-loop approval, parallel processing, and dynamic routing based on AI confidence scores.",
+      "query": "Temporal workflow patterns for AI agents"
+    },
+    {
+      "title": "Implement a Traceable ReAct Agent Using Temporal and LangChain",
+      "url": "https://community.temporal.io/t/implement-a-traceable-react-agent-using-temporal-and-langchain/18301",
+      "content": "While there are existing examples of workflows invoking AI agents, most of those workflows merely call the agent as a whole\u2014tool invocation happens outside the workflow. As a result, it\u2019s impossible to observe when the LLM chooses to call a tool, and any issues\u2014like errors or delays in the tool\u2014aren\u2019t visible in the execution trace. In contrast, our approach embeds the tool calls inside the Temporal Workflow itself. This way, each tool invocation becomes part of the workflow history, fully [...] ```\n@workflow.defn\nclass AiAgentWorkflow:\n    @workflow.run\n    async def run(self, query: str) -> str:\n        messages = [HumanMessage(query)]\n        MAX_STEPS = 8\n        for _ in range(MAX_STEPS):\n            ai_msg = await workflow.execute_activity(\n                \"llm_chat\",\n                messages,\n                schedule_to_close_timeout=timedelta(seconds=60),\n            )\n            messages.append(AIMessage(ai_msg))\n            if ai_msg[\"tool_calls\"]: [...] ```\nasync def main():\n    client = await Client.connect(\"localhost:7233\")\n    result = await client.execute_workflow(\n        \"AiAgentWorkflow\",\n        \"what is 1 divided by 2 then add 1?\",\n        id=f\"AI-Agent-workflow-{{uuid.uuid4()}}\",\n        task_queue=\"my-task-queue\",\n    )\n    print(\"Workflow result:\", result)\n\n```\n\n## 6. Observability & Debugging",
+      "query": "Temporal workflow patterns for AI agents"
+    },
+    {
+      "title": "Indestructible AI Agents: A Guide to Using Temporal - ActiveWizards",
+      "url": "https://activewizards.com/blog/indestructible-ai-agents-a-guide-to-using-temporal",
+      "content": "The Temporal architecture fundamentally decouples the stateful workflow from the stateless workers that execute it. [...] Diagram 1: The durable agent architecture using Temporal.\n\n## A Practical Example: A Durable Document Analysis Agent\n\nLet's design an agent that analyzes a list of 10,000 document URLs. This workflow must be able to run for hours or days and survive any interruptions.\n\n### Step 1: Define the \"Tool\" as an Activity\n\nOur non-deterministic, potentially fallible LLM call becomes a Temporal Activity. Temporal's retry policies will automatically handle transient failures. [...] Temporal Cluster: The stateful core. It records every event in a workflow's history and knows exactly what the next step should be. This is the \"indestructible\" part.\n Agent Workers: A fleet of stateless processes. Their only job is to ask the Temporal Cluster for work, execute a single step (like an LLM call), and report the result back. They can be scaled, crashed, and restarted without affecting the workflow's integrity.",
+      "query": "Temporal workflow patterns for AI agents"
+    },
+    {
+      "title": "Temporal Use Cases and Design Patterns",
+      "url": "https://docs.temporal.io/evaluate/use-cases-design-patterns",
+      "content": "If you're interested in code to help get you started, check out our Temporal Example Applications, Getting Starting Tutorials, or Project-based Tutorials.\n\n Use Cases of Temporal in Production\n  + Transactions\n  + Business processes\n  + Entity lifecycle\n  + Operations\n  + AI / ML and Data Engineering\n  + AI Agents\n General Use Cases\n  + Human in the Loop\n  + Polyglot Systems\n  + Long Running Tasks\n Design Patterns\n  + Saga\n  + State Machine\n\nFeedback [...] AI Agents present new uses for Temporal, such as maintaining state over long periods and enabling seamless human intervention when needed.\nTemporal ensures Durable Execution of tools, LLMs, and conversations, letting you focus on business logic instead of handling failures. For example:\n\n Creating reliable, observable Agents at Lindy\n Long-running, durable Agents at Dust\n Creating account summaries with Agents at ZoomInfo\n\n## General Use Cases\u200b\n\n### Human in the Loop\u200b",
+      "query": "Temporal workflow patterns for AI agents"
+    }
+  ],
+  "recommendations": [
+    "Further research needed on: Durable execution, AI agents",
+    "Explore Temporal's workflow retry mechanisms",
+    "Investigate agent orchestration patterns",
+    "Consider event sourcing for agent state"
+  ]
+}

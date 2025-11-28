@@ -1,0 +1,106 @@
+# Implementation Plan - Enhanced Tool Stack
+
+## Goal Description
+Enhance the Deep Agent with a comprehensive tool stack to support research, code execution, file operations, git operations, database interaction, and MCP integration. This will transform the agent into a "MAS Ecosystem Builder".
+
+## User Review Required
+> [!IMPORTANT]
+> **Security Risk**: Enabling code execution (`PythonREPL`) and file system access (`FileManagementToolkit`) poses significant security risks. Ensure the agent is running in a sandboxed environment or that the user is aware of the risks.
+
+> [!WARNING]
+> **Dependencies**: Some tools may require additional packages (e.g., `duckduckgo-search`, `wikipedia`, `gitpython`).
+
+## Proposed Changes
+
+### Dependencies
+- Install `langchain_experimental` (for PythonREPLTool).
+- Install `duckduckgo-search` or `tavily-python` (for search).
+- Install `wikipedia` (for research).
+- Install `gitpython` (for GitOps).
+
+### [agent.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/agent.py)
+- Import and initialize new tools.
+- Add tools to the [create_react_agent](file:///adapt/platform/novaops/frameworks/lang/langgraph/libs/prebuilt/langgraph/prebuilt/chat_agent_executor.py#269-992) call.
+- Update system prompt to make the agent aware of its new capabilities.
+
+### New Tool Modules
+Create [tools/](file:///usr/local/lib/python3.12/dist-packages/langchain_community/chat_models/minimax.py#649-667) directory to organize tools.
+
+#### [NEW] [tools/research_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/research_tools.py)
+- `DuckDuckGoSearchRun` or `TavilySearchResults`
+- `WikipediaQueryRun`
+
+#### [NEW] [tools/code_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/code_tools.py)
+- `PythonREPLTool` (from `langchain_experimental`)
+- **[NEW] `ShellTool`**: For system administration (sudo, apt-get, service management), DB installation, and unrestricted file/git operations.
+
+#### [NEW] [tools/file_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/file_tools.py)
+- `FileManagementToolkit`: Configured with root dir `/` for full access.
+- **Constraint**: Agent must be prompted to `read_file` before `write_file`.
+
+#### [NEW] [tools/git_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/git_tools.py)
+- Custom Git tools using `GitPython` or `subprocess`.
+- Enhanced with shell capabilities for complex workflows.
+
+#### [NEW] [tools/db_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/db_tools.py)
+- `SQLDatabaseToolkit` (using existing DB connection).
+- **Management**: Use `ShellTool` for installing/optimizing DBs.
+
+#### [NEW] `tools/mcp_tools.py`
+- Integration with MCP servers.
+
+### Enterprise Infrastructure [NEW]
+
+#### 1. Session & Context Management
+- **Session ID**: Derived from `Project ID` + `Agent ID` + `CWD` hash.
+- **Persistence**: Store session state in DragonflyDB (Redis compatible).
+- **History**: Enable concurrent agents in different directories to maintain separate histories.
+
+#### 2. Advanced Tracing
+- **UUIDs**: Generate UUIDs for every Message, Agent, Project, and Handoff.
+- **Tagging**: Add these UUIDs to LangSmith traces.
+
+#### 3. Communication Tools
+- **NATS**: [tools/nats_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/nats_tools.py) for lightweight messaging (Pub/Sub).
+- **DragonflyDB**: [tools/dragonfly_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/dragonfly_tools.py) for high-performance state/cache.
+- **Redpanda**: [tools/redpanda_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/redpanda_tools.py) for durable event streaming (Kafka compatible).
+- **Note**: Verify ports (potential conflict on 18020).
+
+#### 4. Naming Conventions
+- Adhere to [naming_conventions.md](file:///home/x/.gemini/antigravity/brain/24b42b5a-4f34-4463-8d2b-4f3b466c6335/naming_conventions.md) for all created entities.
+
+### Self-Modification & Learning [NEW]
+
+#### 1. Tool Generator (Meta-Tool)
+- **Goal**: Allow the agent to create new tools dynamically.
+- **Implementation**:
+    - `tools/meta_tools.py`: `create_tool(name, description, code, dependencies)`.
+    - **Validation**: Agent must generate a test case for the new tool and verify it passes before registering.
+    - **Safety**: Sandboxed execution for verification.
+    - **Persistence**: Write valid tools to `tools/generated/` and dynamically reload.
+
+### Infrastructure Orchestration [NEW]
+
+#### 1. Infrastructure Designer
+- **Goal**: Generate IaC (Terraform/Pulumi) from specs.
+- **Implementation**:
+    - Leverage `ShellTool` and `FileManagementToolkit`.
+    - Create `templates/terraform/` for common patterns.
+    - Agent uses `generate_iac(spec)` to scaffold files.
+
+#### 2. Resource Provisioner
+- **Goal**: Apply IaC to provision resources.
+- **Implementation**:
+    - `tools/infra_tools.py`: Wrappers for `terraform apply`, `kubectl apply`.
+    - **State**: Manage state files securely (S3/GCS or local with locking).
+
+## Verification Plan
+
+### Automated Tests
+- Create a test script `test_tools.py` to verify each tool individually.
+
+### Manual Verification
+- **Research**: Ask "Who won the Super Bowl in 2024?"
+- **Code**: Ask "Calculate the 100th Fibonacci number."
+- **FileOps**: Ask "Create a file named `test.txt` with content 'Hello'."
+- **GitOps**: Ask "Clone this repo..." (careful with this one).

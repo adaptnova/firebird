@@ -1,0 +1,51 @@
+{
+  "worker_id": 20,
+  "topic": "Autonomous AI systems Temporal case studies",
+  "timestamp": "2025-11-26T18:22:17.203517",
+  "duration_seconds": 7.842542,
+  "executive_summary": "Research on 'Autonomous AI systems Temporal case studies' completed. Found 10 sources with 2 key concepts identified. Coverage: 20.0%",
+  "key_findings": [
+    "Identified 10 relevant sources",
+    "Found 2 key concepts related to Temporal and AI agents",
+    "Coverage score: 20.0%",
+    "Research completed autonomously in parallel with other workers"
+  ],
+  "sources": [
+    {
+      "title": "Case Studies in Autonomous AI: Real-World Applications and ...",
+      "url": "https://superagi.com/case-studies-in-autonomous-ai-real-world-applications-and-lessons-learned-in-2025/",
+      "content": "Some key takeaways from these critical success factors include: [...] transforming the industry as a whole. [...] a smooth transition.",
+      "query": "Autonomous AI systems Temporal case studies"
+    },
+    {
+      "title": "A temporal case-based reasoning approach for performance ...",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0952197624009916",
+      "content": "autonomous navigation system. In Navarro et al. (2012), the use of a temporal bounded case-based planning approach is proposed for industrial processes, planning to solve problems with temporal constraints. This approach is similar to the one presented in Montani and Portinale (2005); the authors propose a framework to represent temporal information in two levels, the case level and the history level. It is applied to RHENE, a system for managing patients in haemodialysis regimen. Ma and Knight [...] insight in the temporal information of consecutive cases in order to describe better the situations occurring in the system, and hence, generating more reliable solutions for the given situation. Despite the control and supervision problem presented here can be solved using the classical CBR approach, the dynamics of the studied domain suggest that considering the time could improve the performance of the IDSS tool. [...] system operators to control a process. The use of this component is illustrated in Section 3.3.",
+      "query": "Autonomous AI systems Temporal case studies"
+    },
+    {
+      "title": "Agentic AI Workflows: Why Orchestration with Temporal is Key",
+      "url": "https://intuitionlabs.ai/articles/agentic-ai-temporal-orchestration",
+      "content": "| Characteristic | Description |\n --- |\n| Autonomy | Agents act without constant human prompts, choosing tools or actions as needed (ReAct architectures, chain-of-thought reasoning) (( \"Highlights: The modern form of agentic,AI has been enabled by\")). |\n| Statefulness | Workflows maintain state across long durations (minutes to hours) of interactions. Agents may pause for external events or user input yet must resume coherently. | [...] Reliability Guarantees: Crucially, Temporal provides strong guarantees about exactly-once behavior and event ordering. Combined with retries, it prevents duplicate work or missed tasks (the \u201czero tolerance\u201d approach). The Xgrid case study notes the impact: after adoption, the proof-of-concept pilot achieved 99.999% uptime (( \"Highlights:  99.999,lost, even during system failures\")) \u2013 implying just minutes of downtime per year. This level of reliability (often called \u201cfive nines\u201d) is [...] Temporal stores runtime state (the entire \u201cvirtual memory\u201d of the workflow) in a backend persistence layer (e.g. Cassandra or SQL). This means no workflow execution is ever lost, even if servers go down or tasks crash. Xgrid\u2019s case study confirms this: after moving to Temporal, the client achieved \u201cZero Data Loss \u2013 Temporal\u2019s durable execution guarantees ensure no workflow executions are lost, even during system failures\u201d (( \"Highlights:  99.999,lost, even during system failures\")).",
+      "query": "Autonomous AI systems Temporal case studies"
+    },
+    {
+      "title": "Case Study: AI-Based Autonomous Control - ISA",
+      "url": "https://www.isa.org/intech-home/2022/october-2022/features/case-study-ai-based-autonomous-control",
+      "content": "move it closer to fully autonomous operation. [...] with only about 30 trial-and-error cycles\u2014a significant achievement. [...] To be considered a success, the autonomous control system must balance numerous critical objectives, some of which are mutually exclusive. These objectives include:",
+      "query": "Autonomous AI systems Temporal case studies"
+    },
+    {
+      "title": "From prototype to production-ready agentic AI solution: A use case ...",
+      "url": "https://temporal.io/blog/prototype-to-prod-ready-agentic-ai-grid-dynamics",
+      "content": "With Temporal, we experienced a fundamental paradigm shift. Instead of treating state as a separate, fragile object that needed to be carefully managed \u2014 like a baton being passed between runners \u2014 Temporal allowed us to make state an integral part of the workflow itself. In our new architecture, we defined a Python class that represents our workflow\u2019s state and made it a core variable within the workflow function, eliminating the baton entirely. [...] The high-level architecture of the Temporal-based solution is illustrated below: Temporal's implementation helped us overcome the most critical challenges of our Kafka-based architecture, including our custom retry logic, stale state issues, and the inability to gracefully resume execution after a long pause. [...] To migrate to Temporal, we had to convert each of these tightly coupled nodes into self-contained Temporal Activities. This transformation required us to explicitly define all the data a node needed as serializable arguments for the activity function. Any shared clients or resources could no longer be assumed to exist; their initialization had to be moved inside the activity itself to ensure it could run independently on any worker.",
+      "query": "Autonomous AI systems Temporal case studies"
+    }
+  ],
+  "recommendations": [
+    "Further research needed on: Durable execution, Persistence",
+    "Explore Temporal's workflow retry mechanisms",
+    "Investigate agent orchestration patterns",
+    "Consider event sourcing for agent state"
+  ]
+}

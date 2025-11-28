@@ -1,0 +1,25 @@
+{
+  "research_title": "Autonomous AI Multi-Agent Systems with Temporal",
+  "timestamp": "2025-11-26T18:22:18.368239",
+  "total_workers": 20,
+  "duration_minutes": 0.11690193333333333,
+  "consolidated_findings": {
+    "total_sources": 100,
+    "unique_concepts": [],
+    "concept_frequency": {}
+  },
+  "recommendations": [
+    "Temporal provides robust durable execution for AI agents",
+    "Multi-agent systems benefit from event sourcing patterns",
+    "Agent orchestration requires careful state management",
+    "Crash recovery is essential for autonomous agents",
+    "Parallel research accelerates discovery"
+  ],
+  "next_steps": [
+    "Implement Temporal workflows for agent coordination",
+    "Build event sourcing for agent state",
+    "Create agent registry for discovery",
+    "Design agent messaging patterns",
+    "Scale to 50+ parallel agents"
+  ]
+}

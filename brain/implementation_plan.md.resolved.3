@@ -1,0 +1,61 @@
+# Implementation Plan - Enhanced Tool Stack
+
+## Goal Description
+Enhance the Deep Agent with a comprehensive tool stack to support research, code execution, file operations, git operations, database interaction, and MCP integration. This will transform the agent into a "MAS Ecosystem Builder".
+
+## User Review Required
+> [!IMPORTANT]
+> **Security Risk**: Enabling code execution (`PythonREPL`) and file system access (`FileManagementToolkit`) poses significant security risks. Ensure the agent is running in a sandboxed environment or that the user is aware of the risks.
+
+> [!WARNING]
+> **Dependencies**: Some tools may require additional packages (e.g., `duckduckgo-search`, `wikipedia`, `gitpython`).
+
+## Proposed Changes
+
+### Dependencies
+- Install `langchain_experimental` (for PythonREPLTool).
+- Install `duckduckgo-search` or `tavily-python` (for search).
+- Install `wikipedia` (for research).
+- Install `gitpython` (for GitOps).
+
+### [agent.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/agent.py)
+- Import and initialize new tools.
+- Add tools to the [create_react_agent](file:///adapt/platform/novaops/frameworks/lang/langgraph/libs/prebuilt/langgraph/prebuilt/chat_agent_executor.py#269-992) call.
+- Update system prompt to make the agent aware of its new capabilities.
+
+### New Tool Modules
+Create [tools/](file:///usr/local/lib/python3.12/dist-packages/langchain_community/chat_models/minimax.py#649-667) directory to organize tools.
+
+#### [NEW] [tools/research_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/research_tools.py)
+- `DuckDuckGoSearchRun` or `TavilySearchResults`
+- `WikipediaQueryRun`
+
+#### [NEW] [tools/code_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/code_tools.py)
+- `PythonREPLTool` (from `langchain_experimental`)
+- **[NEW] `ShellTool`**: For system administration (sudo, apt-get, service management), DB installation, and unrestricted file/git operations.
+
+#### [NEW] [tools/file_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/file_tools.py)
+- `FileManagementToolkit`: Configured with root dir `/` for full access.
+- **Constraint**: Agent must be prompted to `read_file` before `write_file`.
+
+#### [NEW] [tools/git_tools.py](file:///adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/git_tools.py)
+- Custom Git tools using `GitPython` or `subprocess`.
+- Enhanced with shell capabilities for complex workflows.
+
+#### [NEW] `tools/db_tools.py`
+- `SQLDatabaseToolkit` (using existing DB connection).
+- **Management**: Use `ShellTool` for installing/optimizing DBs (e.g., `sudo apt-get install postgresql`).
+
+#### [NEW] `tools/mcp_tools.py`
+- Integration with MCP servers (if library available, otherwise custom bridge).
+
+## Verification Plan
+
+### Automated Tests
+- Create a test script `test_tools.py` to verify each tool individually.
+
+### Manual Verification
+- **Research**: Ask "Who won the Super Bowl in 2024?"
+- **Code**: Ask "Calculate the 100th Fibonacci number."
+- **FileOps**: Ask "Create a file named `test.txt` with content 'Hello'."
+- **GitOps**: Ask "Clone this repo..." (careful with this one).

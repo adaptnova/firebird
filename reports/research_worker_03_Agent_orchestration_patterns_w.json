@@ -1,0 +1,51 @@
+{
+  "worker_id": 3,
+  "topic": "Agent orchestration patterns with Temporal",
+  "timestamp": "2025-11-26T18:22:13.962344",
+  "duration_seconds": 4.601388,
+  "executive_summary": "Research on 'Agent orchestration patterns with Temporal' completed. Found 10 sources with 3 key concepts identified. Coverage: 30.0%",
+  "key_findings": [
+    "Identified 10 relevant sources",
+    "Found 3 key concepts related to Temporal and AI agents",
+    "Coverage score: 30.0%",
+    "Research completed autonomously in parallel with other workers"
+  ],
+  "sources": [
+    {
+      "title": "Orchestrating ambient agents with Temporal",
+      "url": "https://temporal.io/blog/orchestrating-ambient-agents-with-temporal",
+      "content": "Orchestrating with Temporal also simplified the design: rather than writing complex multi-threaded code or managing distributed state, I let Temporal Workflows handle concurrency and state isolation. Each agent had its own Workflow \u201cinstance\u201d (for example, an `ExecutionAgentWorkflow` with a well-known ID) and could maintain internal variables (like the current prompt or recent actions) in memory safely. Temporal\u2019s single-responsibility Workflows made the multi-agent system easier to extend too. [...] Coordinating several agents and services \u2014 ticker feeds, a trading agent, a performance judge, and more \u2014 can get complicated fast. Temporal simplified this by acting as the central orchestrator for all agent workflows. In my design, each major component is a separate Workflow (or set of Workflows) and Temporal manages their lifecycles and interactions. This yielded a system where agents can run truly 24\u00d77 with resilience and clarity in how they interact. [...] Using Temporal for tool implementations also kept the agent\u2019s reasoning loop deterministic. The agent (an LLM) would decide on an action, call a tool, and receive the result \u2014 all that heavy lifting (fetching market data, logging a trade, etc.) was done inside a Temporal Workflow which is isolated from the agent\u2019s prompt and handled by a Temporal Worker, keeping the MCP server\u2019s load low. This maintains a clear separation: the MCP server shows what can be done, the LLM decides what to do, and",
+      "query": "Agent orchestration patterns with Temporal"
+    },
+    {
+      "title": "Multi-agent Workflows: Use cases & architecture with Temporal",
+      "url": "https://temporal.io/blog/what-are-multi-agent-workflows",
+      "content": "Temporal\u2019s orchestration here allows each agent to function independently yet stay coordinated, enabling seamless and efficient customer support automation.\n\n## In summary#\n\nTemporal\u2019s orchestration, durability, and ability to manage complex stateful and stateless interactions make it a perfect foundation for multi-agent workflows in AI applications. Temporal ensures that these interactions are reliable, efficient, and resilient, even as workflows grow in complexity or scale. [...] Agent A: Analyzes incoming customer requests and classifies them by their level of urgency.\n Agent B: Looks up customer history and finds relevant data.\n Agent C: Routes the request to the appropriate support team or initiates an automated response.\n\nTemporal would:\n\n Trigger Agent A upon receiving a request.\n Wait for Agent A\u2019s result, then pass the data to Agent B.\n Manage async calls to Agent C for routing and initiate follow-up workflows based on responses. [...] For example, a monitoring agent could signal other agents to update their analysis if new data arrives or a condition changes, ensuring that all activities across the system can be orchestrated as part of a single, cohesive workflow.\n\n## Practical Example: A Multi-Agent Workflow for Customer Support#\n\nImagine a customer support system where Temporal coordinates multiple agents:",
+      "query": "Agent orchestration patterns with Temporal"
+    },
+    {
+      "title": "Agentic AI Workflows: Why Orchestration with Temporal is Key",
+      "url": "https://intuitionlabs.ai/articles/agentic-ai-temporal-orchestration",
+      "content": "Centralized Orchestration: A single central engine dictates each step. Example tools: Temporal, Apache Airflow, AWS Step Functions. The control flow is entirely defined upfront or in an orchestration script. All agents or tasks register with the central engine, which tracks the global workflow state. This makes debugging easier because there is one point of visibility. The Akka agentic frameworks guide notes that \u201ca centralized orchestration tool is likely to be similar to [Temporal] or [...] Table 1 below summarizes common multi-agent failure patterns and mitigation strategies: [...] | State Synchronization Issues | Agents draw on inconsistent data. e.g., OrderAgent posts \u201cpaid\u201d, InventoryAgent reads \u201cunpaid\u201d before seeing update (( \"Highlights: Stale State Propagation: Agent A,duplicate work or contradictory outcomes\")), causing contradiction. | Use centralized workflow orchestration with a single source of truth (avoids stale reads). It can serialize steps to ensure consistency. Temporal\u2019s event-history ensures updates propagate in order. |",
+      "query": "Agent orchestration patterns with Temporal"
+    },
+    {
+      "title": "AI Agent Orchestration Patterns - Azure Architecture Center",
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns",
+      "content": "The sequential orchestration pattern solves problems that require step-by-step processing, where each stage builds on the previous stage. It suits workflows that have clear dependencies and improve output quality through progressive refinement. This pattern resembles the Pipes and Filters cloud design pattern, but it uses AI agents instead of custom-coded processing components. The choice of which agent gets invoked next is deterministically defined as part of the workflow and isn't a choice [...] The magentic orchestration pattern is designed for open-ended and complex problems that don't have a predetermined plan of approach. Agents in this pattern typically have tools that allow them to make direct changes in external systems. The focus is as much on building and documenting the approach to solve the problem as it is on implementing that approach. The task list is dynamically built and refined as part of the workflow through collaboration between specialized agents and a magentic [...] This pattern addresses scenarios where you need diverse insights or approaches to the same problem. Instead of sequential processing, all agents work in parallel, which reduces overall run time and provides comprehensive coverage of the problem space. This orchestration pattern resembles the Fan-out/Fan-in cloud design pattern. The results from each agent are often aggregated to return a final result, but that's not required. Each agent can independently produce its own results within the",
+      "query": "Agent orchestration patterns with Temporal"
+    },
+    {
+      "title": "Temporal Microservices Orchestration Platform | Spiral Scout",
+      "url": "https://spiralscout.com/glossary/temporal-microservices-orchestration-platform",
+      "content": "## How Temporal Works\n\nTemporal\u2019s orchestration solution provides end-to-end visibility into business processes that encompass multiple microservices while ensuring effective and consistent error handling. This simplifies the process of building reliable applications and coding compensation logic with Saga pattern support. This highlights what is orchestration in microservices and how it is beneficial. [...] Two primary special-purpose functions do the heavy lifting with Temporal: workflow and activity functions. [...] Workflows are stateful functions utilized to orchestrate your application. Within a workflow, Temporal seamlessly and safely stores all local variables and threads. This eliminates the need for complex state management infrastructure with various external databases. Workflows are written in general-purpose everyday programming languages as opposed to text-based DSL engines. his is part of Temporal sourcing programming.",
+      "query": "Agent orchestration patterns with Temporal"
+    }
+  ],
+  "recommendations": [
+    "Further research needed on: Temporal workflows, AI agents, State management",
+    "Explore Temporal's workflow retry mechanisms",
+    "Investigate agent orchestration patterns",
+    "Consider event sourcing for agent state"
+  ]
+}
