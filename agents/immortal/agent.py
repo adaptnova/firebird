@@ -3,10 +3,6 @@ import sys
 import re
 import warnings
 
-# Only add checkpoint-postgres to path, use installed versions for others
-sys.path.insert(
-    0, "/adapt/platform/novaops/frameworks/lang/langgraph/libs/checkpoint-postgres"
-)
 
 # Add current directory to sys.path to ensure local modules are found
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -33,22 +29,29 @@ def expand_vars(text):
 
 def load_secrets():
     """Loads secrets from env files if not already present."""
-    secrets_files = ["/adapt/secrets/m2.env", "/adapt/secrets/db.env"]
-    for path in secrets_files:
-        if os.path.exists(path):
-            with open(path) as f:
-                for line in f:
-                    if "=" in line and not line.startswith("#"):
-                        key, value = line.split("=", 1)
-                        key = key.strip()
-                        value = value.strip()
-                        # Remove surrounding quotes if present
-                        if (value.startswith('"') and value.endswith('"')) or (
-                            value.startswith("'") and value.endswith("'")
-                        ):
-                            value = value[1:-1]
-                        if key not in os.environ:
-                            os.environ[key] = value
+    from dotenv import load_dotenv
+    
+    # Load secrets from path specified in env or default location
+    secrets_path = os.environ.get("SECRETS_PATH", "/adapt/secrets/m2.env")
+    if os.path.exists(secrets_path):
+        load_dotenv(secrets_path)
+    else:
+        warnings.warn(f"Secrets file not found at {secrets_path}")
+
+    # Map MiniMax keys if present
+    if "MiniMax_M2_CODE_PLAN_API_KEY" in os.environ:
+        os.environ["ANTHROPIC_API_KEY"] = os.environ["MiniMax_M2_CODE_PLAN_API_KEY"]
+
+    if "MiniMax_M2_GROUP_ID" in os.environ:
+        os.environ["MINIMAX_GROUP_ID"] = os.environ["MiniMax_M2_GROUP_ID"]
+    else:
+        os.environ["MINIMAX_GROUP_ID"] = "123456"
+
+    # Initialize LangSmith
+    os.environ["LANGCHAIN_TRACING_V2"] = "true"
+    os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
+    os.environ["LANGCHAIN_API_KEY"] = os.environ.get("LANGCHAIN_API_KEY", "")
+    os.environ["LANGCHAIN_PROJECT"] = os.environ.get("LANGCHAIN_PROJECT", "default")
 
     # Expand variables
     for key, value in os.environ.items():

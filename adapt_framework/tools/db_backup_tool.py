@@ -122,7 +122,7 @@ def backup_postgres_database(
         }
 
 
-def list_postgres_databases(
+def list_postgres_databases_test_only(
     host: str = "localhost",
     port: int = 18030,  # PostgreSQL TimescaleDB port (not default 5432)
     username: str = "postgres_admin_user",

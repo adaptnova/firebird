@@ -50,7 +50,11 @@ async def run_agent_turn_activity(user_input: str, thread_id: str) -> str:
     try:
         from dotenv import load_dotenv
 
-        load_dotenv("/adapt/secrets/m2.env")
+        secrets_path = os.environ.get("SECRETS_PATH", "/adapt/secrets/m2.env")
+        if os.path.exists(secrets_path):
+            load_dotenv(secrets_path)
+        else:
+            print(f"Warning: Secrets file not found at {secrets_path}")
     except Exception as e:
         print(f"Warning: Could not load secrets: {e}")
 

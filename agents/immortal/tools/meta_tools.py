@@ -2,8 +2,8 @@ import os
 import sys
 from langchain_core.tools import tool
 
-# Directory to store generated tools
-TOOLS_DIR = "/adapt/platform/novaops/frameworks/lang/deepagents-quickstarts/memory_agent/tools/generated"
+# Use a relative path for generated tools
+TOOLS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "generated")
 os.makedirs(TOOLS_DIR, exist_ok=True)
 
 # Ensure the generated tools directory is in the path
