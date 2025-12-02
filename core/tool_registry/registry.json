@@ -1,0 +1,27 @@
+{
+  "created_at": "2025-12-02T18:55:33.460823",
+  "tool_count": 1,
+  "generated_tools_count": 1,
+  "categories": {
+    "demo": [
+      "demo_tool"
+    ]
+  },
+  "tools": {
+    "demo_tool": {
+      "tool_name": "demo_tool",
+      "version": "1.0.0",
+      "generated": true,
+      "generated_at": "2025-12-02T11:55:33.461138",
+      "file_path": "core/tool_registry/tools/demo_tool.py",
+      "synthesizes_tools": [],
+      "success_rate": 0.95,
+      "frequency": 10,
+      "category": "demo",
+      "description": "Demo tool for IMMORTAL presentation",
+      "author": "IMMORTAL Tool Synthesis Engine",
+      "safety_reviewed": false,
+      "deployment_approved": false
+    }
+  }
+}
